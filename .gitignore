@@ -1,0 +1,18 @@
+########
+# VSCODE
+########
+.vscode
+
+########
+# Python
+########
+__pycache__
+
+########
+# OTHER
+########
+idea.py
+*.egg-info
+*.pyc
+dist
+build
