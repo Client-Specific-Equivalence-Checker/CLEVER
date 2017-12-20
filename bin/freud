@@ -7,8 +7,6 @@ from argparse import ArgumentParser
 
 from freud import PATTERN, SOLVER, NOTCSE, prove_cse
 
-from pysmt.shortcuts import *
-
 def main():
     print("Client-Specific Equivalence Checking")
 
@@ -65,7 +63,7 @@ def main():
     elif res == SOLVER:
         print("CSE Proven by Assertion!")
     elif res == NOTCSE:
-        print("Not CSE! Counter: %s" % ctr)
+        print("Not CSE!\nCounter:\n%s" % ctr)
     else:
         print(res, ctr)
 
