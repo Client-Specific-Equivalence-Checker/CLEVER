@@ -16,3 +16,5 @@ idea.py
 *.pyc
 dist
 build
+*.py.dot
+*.py.dot.png

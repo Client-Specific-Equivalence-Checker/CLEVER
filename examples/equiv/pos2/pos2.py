@@ -1,4 +1,4 @@
-def lib1(x):
+def lib(x):
     if x < 0:
         return -x
     counter = 0

@@ -19,20 +19,20 @@ def prove_cse(startegy, file1, file2, client, library):
     if upgr is None:
         sys.exit(1)
 
-    unknown = Symbol('unkown', INT)
+    unknown = Symbol('Unknown', INT)
     try:
         orig_engine = ExplorationEngine(orig.create_invocation())
         orig_struct = orig_engine.explore()
         orig_summary = orig_struct.to_summary(unknown)
-        print(orig_summary)
+        print(serialize(orig_summary))
 
         upgr_engine = ExplorationEngine(upgr.create_invocation())
         upgr_struct = upgr_engine.explore()
         upgr_summary = upgr_struct.to_summary(unknown)
-        print(upgr_summary)
+        print(serialize(upgr_summary))
 
         assertion = EqualsOrIff(orig_summary, upgr_summary)
-        print("Attempting to Prove:\n%s" % assertion)
+        print("Attempting to Prove:\n%s" % serialize(assertion))
         assertion = Not(assertion)
         model = get_model(assertion)
         if model:

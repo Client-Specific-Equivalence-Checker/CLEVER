@@ -1,4 +1,4 @@
-def lib2(a, b):
+def lib(a, b):
 	c = 0
 	i = 0
 	while i < a:

@@ -1,4 +1,4 @@
-def lib1(a, b):
+def lib(a, b):
     c=0
     if b < 0:
         i = 1
