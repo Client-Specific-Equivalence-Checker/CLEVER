@@ -1,4 +1,4 @@
-# [Delorean Case Study](https://github.com/myusuf3/delorean)
+# [Delorean](https://github.com/myusuf3/delorean) Case Study
 
 ## Client/Library Relationships
 
