@@ -28,3 +28,15 @@ sudo python3 setup.py install
 ```bash
 freud <V1_FILE> <V2_FILE> --client <NAME_OF_CLIENT> --library <NAME_OF_LIBRARY> <RETURN_TYPE> <ARG_TYPES>
 ```
+
+## Example
+
+```bash
+freud loopmult20.py loopmult20_1.py --client loopmult20 --library lib int [int,int]
+
+Attempting to Prove:
+(((18 <= x) ? ((x < 22) ? ((... + ...) + x) : 0) : 0) = ((18 <= x) ? ((x < 22) ? ((... < ...) ? (... ? ... : ...) : Unknown) : 0) : 0))
+
+CSE Proven by Assertion!
+Execution time: 0.130 seconds
+```
