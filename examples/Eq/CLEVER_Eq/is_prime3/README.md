@@ -1,0 +1,4 @@
+- The client calls the library with a value of *x* that is not in a fixed list of small primes.
+- The original library iterates over the same fixed list of small primes checking if *x* is evenly divisible by any of them. If so, the library returns 0, indicating that *x* is prime.
+- The updated library adds a check to ensure that *x* is not in fact one of the small primes.
+- The change does not affect the client.

@@ -1,0 +1,4 @@
+- The client calls the library with a value of *x* larger than 19.
+- The original library iterates over a fixed list of primes (max 19) checking if *x* is evenly divisible by any of them. If so, the library returns 0, indicating that *x* is prime.
+- The updated library adds a check to ensure that *x* is not in fact one of the small primes.
+- The change does not affect the client.

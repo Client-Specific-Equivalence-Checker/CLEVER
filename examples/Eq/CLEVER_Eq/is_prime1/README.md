@@ -1,0 +1,4 @@
+- The client calls the library with the flag *b* not set.
+- The original library returns 0 if the flag is not set. Otherwise it iterates over a fixed list of small primes checking if *x* is evenly divisible by any of them. If so, the library returns 0, indicating that *x* is prime.
+- The updated library adds a check to ensure that *x* is not in fact one of the small primes.
+- The change does not affect the client.

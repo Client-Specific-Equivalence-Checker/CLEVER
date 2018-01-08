@@ -1,0 +1,350 @@
+# [Delorean Case Study](https://github.com/myusuf3/delorean)
+
+## Client/Library Relationships
+
+## Commits
+Check mark indicates that commit contains candidate client-specific change.
+That is, that the commit contains a semantic change to one or more but not 
+all components that preserves interfaces.
+
+- [ ] ``initial commit of delorean``
+- [ ] ``adding .gitignore``
+- [ ] ``adding empty setup.py``
+- [ ] ``adding test dir``
+- [ ] ``updating README.rst, as well as adding timedash.jpg``
+- [ ] ``actually added timedash.jpg``
+- [ ] ``more changes, me sleepy``
+- [ ] ``some playing around``
+- [ ] ``myfirstcommit``
+- [ ] ``muna``
+- [ ] ``adding makings for tests, add tzinfo, bit more structure, setup.py data``
+- [ ] ``adding more setup.py``
+- [ ] ``updating so tests run``
+- [ ] ``adding more tests and methods``
+- [ ] ``more changes``
+- [ ] ``more tests``
+- [ ] ``change so asserts fail``
+- [ ] ``adding fixed tests``
+- [ ] ``first cut tzinfo``
+- [ ] ``updating setup and removing tzinfo``
+- [ ] ``adding data stub``
+- [ ] ``adding setup code``
+- [ ] ``adding code for demo``
+- [ ] ``adding code for the game``
+- [ ] ``new class structure``
+- [ ] ``Update README.md``
+- [ ] ``refactoring``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``model changes``
+- [ ] ``Fix issue where we are using _datetime and _dt``
+- [ ] ``added base exception DeloreanError``
+- [ ] ``Merge pull request #3 from mgrouchy/add-base-exception``
+- [ ] ``Merge pull request #2 from mgrouchy/consistent-variable-names``
+- [ ] ``stub basic functionality for the API:``
+- [ ] ``Merge pull request #4 from mgrouchy/api-mock``
+- [ ] ``removing shifting file``
+- [ ] ``test commit``
+- [ ] ``Merge branch 'master' of git://github.com/myusuf3/delorean``
+- [ ] ``test``
+- [ ] ``adding tructate function and naive function as well as some other corrections``
+- [ ] ``testing the stuff i just committed``
+- [ ] ``adding travis file``
+- [ ] ``adding requirements.txt``
+- [ ] ``Update LICENSE``
+- [ ] ``updatin script``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``Update README.md``
+- [ ] ``added license``
+- [ ] ``fixing code date``
+- [ ] ``moar tests``
+- [ ] ``adding code for make file``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``adding a few methods to import``
+- [ ] ``adding method to get timezone object updating normalize and localize``
+- [ ] ``fixing init bugs``
+- [ ] ``adding moar tests``
+- [ ] ``comments``
+- [ ] ``adding more tests``
+- [ ] ``changing kwargs``
+- [ ] ``adding better imports``
+- [ ] ``imporiving init for delorean adding is naive as well as updating naive behavior``
+- [ ] ``adding comment for needed exceptions``
+- [ ] ``updating tests to reflect code``
+- [ ] ``moving something to utils could potentially become the api``
+- [ ] ``adding code for parse tests``
+- [ ] ``Merge branch 'master' of git://github.com/myusuf3/delorean``
+- [ ] ``add moving datetime and helpers``
+- [ ] ``slight api change + inprogress tests``
+- [ ] ``Added some tests + fixes``
+- [ ] ``updated as per comments``
+- [ ] ``Merge pull request #6 from mgrouchy/shift-dates``
+- [ ] ``updating image``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``adding stub for range``
+- [ ] ``removing misc dir``
+- [ ] ``updating ignore``
+- [ ] ``adding errors``
+- [ ] ``adding steps and days of week``
+- [ ] ``adding errors to code``
+- [ ] ``committed ground work to stops api``
+- [ ] ``moar test stubs``
+- [ ] ``changed method prototype``
+- [ ] ``better stops method``
+- [ ] ``adding updating interval and next_day method``
+- [ ] ``passing interval``
+- [ ] ``adding tests for the stops api``
+- [ ] ``adding docs``
+- [ ] ``slight api update``
+- [ ] ``Merge pull request #7 from mgrouchy/mg/update-movedate-api``
+- [ ] ``adding docs theme``
+- [ ] ``updating sphinx conf file``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``updating ignore file``
+- [ ] ``removing themes docs``
+- [ ] ``adding themes to docs``
+- [ ] ``switching out themes and updating index``
+- [ ] ``updating ribbon``
+- [ ] ``update``
+- [ ] ``adding doc build tools``
+- [ ] ``adding code for updated index page``
+- [ ] ``adding copyright page and install``
+- [ ] ``renaming to test``
+- [ ] ``adding shift method for timezones``
+- [ ] ``moar tests!!``
+- [ ] ``moar tests``
+- [ ] ``updating install docs``
+- [ ] ``adding title sections``
+- [ ] ``updating import style``
+- [ ] ``adding epoch method``
+- [ ] ``adding code for epoch api and flux method for paying it forward``
+- [ ] ``updating tests``
+- [ ] ``adding osx files``
+- [ ] ``adding contribution docs``
+- [ ] ``updating table of contents``
+- [ ] ``updating install docs``
+- [ ] ``first cut of quickstart``
+- [ ] ``removing old files``
+- [ ] ``Update docs/_themes/kr/layout.html``
+- [ ] ``changing the repr``
+- [ ] ``adding more templates and updating conf.py``
+- [ ] ``updating docs``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``hack to get docs to build``
+- [ ] ``making date a attribute``
+- [ ] ``updates to quickstart``
+- [ ] ``improved behavior of naive it now results in a naive utc datetime``
+- [ ] ``updated the parse method to always return utc localized delorean object as well now detects tz from string passed in if available``
+- [ ] ``added delorean import for autodoc``
+- [ ] ``adding interface to frontpage``
+- [ ] ``adding interface file and updateting tests``
+- [ ] ``updating doc strings``
+- [ ] ``adding more quickstart docs``
+- [ ] ``more swag``
+- [ ] ``Explicitly specifying pytz version``
+- [ ] ``Fixing minor spelling mistake``
+- [ ] ``Reverting change to setup.py so now it does not explicitly specify the version of pytz``
+- [ ] ``Merge pull request #9 from shussain/master``
+- [ ] ``cleaning up init``
+- [ ] ``updating pytz versions``
+- [ ] ``reworking tests for cleaner imports``
+- [ ] ``updating delorean usage``
+- [ ] ``adding updating to interface code``
+- [ ] ``renaming some files``
+- [ ] ``docs update``
+- [ ] ``moar typos``
+- [ ] ``side-primary missing "that"``
+- [ ] ``side-secondary missing "that"``
+- [ ] ``don't cheat with first example to make Delorean look better``
+- [ ] ``install.rst: break up sentences``
+- [ ] ``install.rst: let's not use pip in a personal manner``
+- [ ] ``quickstart.rst: language fixes``
+- [ ] ``updating docs strings``
+- [ ] ``adding stub for range method``
+- [ ] ``moar docs``
+- [ ] ``adding handy range methods``
+- [ ] ``fixing version.``
+- [ ] ``merge commit``
+- [ ] ``adding follow stuff for github``
+- [ ] ``stay informed``
+- [ ] ``updating readme``
+- [ ] ``updating read me``
+- [ ] ``updating setup.py``
+- [ ] ``upping some versions``
+- [ ] ``another dumb version bump``
+- [ ] ``Some tiny grammar fixes in the README.``
+- [ ] ``Merge pull request #13 from steveklabnik/patch-1``
+- [ ] ``small grammar fix``
+- [ ] ``Merge pull request #14 from jboehmig/patch-1``
+- [ ] ``made appropriate roads comment``
+- [ ] ``Merge pull request #15 from achuinard/patch-1``
+- [ ] ``Fix the pytz example.``
+- [ ] ``Merge pull request #16 from cpick/example``
+- [ ] ``Now __version__ in another file, because install of package raise an ImportError``
+- [ ] ``removing DS_Store``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``Merge pull request #18 from SergioJorge/master``
+- [ ] ``moving version number``
+- [ ] ``moving delorean out of lib``
+- [ ] ``adding version.py to manifest``
+- [ ] ``Use syntax highlighting in the readme file.``
+- [ ] ``Merge pull request #20 from ming13/readme-syntax-highlighting``
+- [ ] ``updating docs.``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``Use '==' instead of 'is' for string comparisons.``
+- [ ] ``Merge pull request #21 from meastman/master``
+- [ ] ``including python3 versions...``
+- [ ] ``only testing 3.2 updating requirements``
+- [ ] ``fixing it so it works with python2.6``
+- [ ] ``making this library python 3 compatible``
+- [ ] ``supporting up to python3.2``
+- [ ] ``updating docs``
+- [ ] ``Make __eq__ a safe operation``
+- [ ] ``Merge pull request #27 from mgrouchy/safe-eq``
+- [ ] ``Fix for overloaded __ne__ operator``
+- [ ] ``Merge pull request #28 from sleekslush/neq-fix``
+- [ ] ``fix minor misspelling``
+- [ ] ``Merge pull request #29 from zever/master``
+- [ ] ``adding handling for localize datetimes to the Delorean object``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``documentation typo``
+- [ ] ``moar docs``
+- [ ] ``adding more fixes``
+- [ ] ``bumping version to 0.2.0``
+- [ ] ``adding comparison methods and tests``
+- [ ] ``updating docs and fixing comparision for python 2.6``
+- [ ] ``Update README.rst``
+- [ ] ``Update README.rst``
+- [ ] ``Add methods to shift time by hours, minutes and seconds like a real time machine``
+- [ ] ``Add tests to cover new methods and add new methods to __init__.py``
+- [ ] ``Fix order of shift values``
+- [ ] ``Merge pull request #32 from codebynumbers/master``
+- [ ] ``Initialize Delorean._tz using tzinfo.tzname() instead of pytz specific tzinfo.zone``
+- [ ] ``added initialization tests with different tzinfo objects``
+- [ ] ``Changed assertIsInstance to assertTrue for backwards compatability.``
+- [ ] ``Merge pull request #34 from benhohner/fix_generic_tz_init``
+- [ ] ``bumping version for delorean``
+- [ ] ``adding releases for changelog generation``
+- [ ] ``add changelog rst``
+- [ ] ``removing releases till I can fix isssue with it.``
+- [ ] ``bumping version``
+- [ ] ``add tests for issue: https://github.com/myusuf3/delorean/issues/36``
+- [ ] ``more assertions in tests``
+- [ ] ``fix issue 36: passing datetime to tzinfo.tzname() can return timezone that won't be recognized by pytz``
+- [ ] ``Merge pull request #37 from swistakm/fix/issue-36-datetimes-timezone``
+- [ ] ``bumping version number``
+- [ ] ``fixing tests for the year change``
+- [ ] ``bumping version``
+- [ ] ``adding underline``
+- [ ] ``this is a release and fixes #43``
+- [ ] ``adding readme``
+- [ ] ``fixed typo``
+- [ ] ``Merge pull request #45 from gabegaster/master``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``removing use mirrors``
+- [ ] ``Update README.rst``
+- [ ] ``adding a function to handle date passing to the``
+- [ ] ``writing a test case for the bug uncovered in #42``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``changing python versions``
+- [ ] ``fixing test``
+- [ ] ``fixing test data``
+- [ ] ``upping version``
+- [ ] ``adding pypy and pypy3``
+- [ ] ``fixing tests and adding new build versions``
+- [ ] ``adding 3.4 support and version bump``
+- [ ] ``rule parameters weren't being passed, so stops function wasn't working properly.``
+- [ ] ``Merge pull request #49 from xgilest/master``
+- [ ] ``bumping version``
+- [ ] ``adding comma``
+- [ ] ``Small test to check stops bug was resolved by my previous commit, not all rrule functionality is checked, though``
+- [ ] ``Merge pull request #50 from xgilest/master``
+- [ ] ``Point README to the docs instead of "below"``
+- [ ] ``Merge pull request #55 from kermit666/patch-1``
+- [ ] ``Implemented timedelta arithmetic.``
+- [ ] ``Added documentation for timezone arithmetic.``
+- [ ] ``Finished up date arithmetic to better mirror datetime's functionality. Added test_suite to setup.py for test running.``
+- [ ] ``Updated documentation``
+- [ ] ``Merge pull request #56 from josefdlange/master``
+- [ ] ``testing naive truncating to the minute``
+- [ ] ``updating pytz``
+- [ ] ``updating pytz``
+- [ ] ``fixing the dependencies``
+- [ ] ``fixing requirements``
+- [ ] ``bumping version``
+- [ ] ``Added title heading to timedelta arithmetic section.``
+- [ ] ``Merge pull request #58 from josefdlange/master``
+- [ ] ``Move to use pip-tools to manaage requirements``
+- [ ] ``Remove extra 'precedence' in quickstart docs``
+- [ ] ``Removes weird link generated by Sphinx``
+- [ ] ``Delorean objects are equal if they are UTC equal``
+- [ ] ``Merge pull request #59 from mlew/52``
+- [ ] ``Merge pull request #60 from mlew/51``
+- [ ] ``Merge pull request #62 from mlew/61``
+- [ ] ``adding functionality for start_of_day, and end_of_day``
+- [ ] ``adding tests``
+- [ ] ``Merge branch 'master' into pip-tools``
+- [ ] ``Added documentation for Delorean.__eq__``
+- [ ] ``end_of_day should return 11pm, not 11am``
+- [ ] ``Merge pull request #67 from mlew/66``
+- [ ] ``Merge pull request #63 from mlew/61``
+- [ ] ``Update __repr__ return value``
+- [ ] ``Merge pull request #69 from mlew/64``
+- [ ] ``Migrate Delorean to work with FixedOffset timezones``
+- [ ] ``Cleanup code example in README.md``
+- [ ] ``Add CHANGES.md``
+- [ ] ``update requirements.txt``
+- [ ] ``Bump version to 0.6.0``
+- [ ] ``Remove unused utc variables``
+- [ ] ``Delorean.parse() understands dateutil.tz.tzlocal``
+- [ ] ``Add tzlocal as a dependency``
+- [ ] ``Update documentation on Delorean properties``
+- [ ] ``Update a bunch of the documentation``
+- [ ] ``Update CHANGES.md``
+- [ ] ``Merge pull request #71 from mlew/70``
+- [ ] ``Documentation update``
+- [ ] ``Merge branch 'master' into pip-tools``
+- [ ] ``Merge branch 'pip-tools' into 40``
+- [ ] ``Fix delorean.now() to return a local Delorean``
+- [ ] ``Move a bunch of Delorean class methods to properties``
+- [ ] ``Update requirements``
+- [ ] ``Add sphinx to dev-requirements``
+- [ ] ``Update docs target in Makefile``
+- [ ] ``Adding doctests``
+- [ ] ``Add more documentation``
+- [ ] ``Update dev-requirements``
+- [ ] ``Last bit of new documentation for 0.6.0``
+- [ ] ``Add humanize method to Delorean class``
+- [ ] ``Add babel support``
+- [ ] ``Add an overriding timezone parameter to delorean.parse``
+- [ ] ``Update setup.py``
+- [ ] ``README cleanup``
+- [ ] ``fix for travis.ci``
+- [ ] ``setup.py fix``
+- [ ] ``Fix unit tests for case where get_localzone is in UTC``
+- [ ] ``Python2.6 compatability``
+- [ ] ``Some last minute cleanup``
+- [ ] ``Updates to Changes.rst for 0.6.0 release.``
+- [ ] ``Merge pull request #73 from mlew/0.6.0``
+- [ ] ``Update requirements files``
+- [ ] ``Update dependencies in setup.py``
+- [ ] ``Call out breaking changes in the documentation``
+- [ ] ``Fix quickstart docs``
+- [ ] ``Merge pull request #78 from matiskay/fix-documentation``
+- [ ] ``Added replace method on Delorean object``
+- [ ] ``Added docs for the replace method``
+- [ ] ``Updated tests``
+- [ ] ``Added a few asserts on datetime``
+- [ ] ``Add PyCharm dir to gitignore.``
+- [ ] ``Use `naive` and `midnight` as properties in documentation. Closes myusuf3/delorean#88.``
+- [ ] ``Delete empty philosophy.rst``
+- [ ] ``Merge pull request #89 from ParthGandhi/fix-quickstart-docs``
+- [ ] ``Include tests in release source tarball``
+- [ ] ``Merge pull request #90 from EdwardBetts/patch-1``
+- [ ] ``adding test for dayfirst False``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``Merge pull request #81 from masnun/master``
+- [ ] ``adding python 3.5``
+- [ ] ``Merge branch 'master' of github.com:myusuf3/delorean``
+- [ ] ``Add most recent Python versions in Travis CI``
+- [ ] ``Remove nightly from .travis.yml file``
+- [ ] ``Merge pull request #98 from SylvainDe/master``
