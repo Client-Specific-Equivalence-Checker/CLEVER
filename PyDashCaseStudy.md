@@ -1,0 +1,995 @@
+# [PyDash](https://github.com/dgilland/pydash) Case Study
+
+## Client/Library Relationships
+
+## Commits
+Check mark indicates that commit contains candidate client-specific change.
+That is, that the commit contains a semantic change to one or more but not
+all components that preserves interfaces.
+
+- [ ] Add compact(), difference(), rest(), find_index(), first(), where(), and pluck() functions and test.
+- [ ] Add test_requirements.txt
+- [ ] Update README.
+- [ ] Update README.
+- [ ] Fix syntax error in README.
+- [ ] Fix syntax error in README (again).
+- [ ] Add functions: head, flatten, index_of, and initial.
+- [ ] Add functions:
+- [ ] Update README with current differences between Lodash. Add license file.
+- [ ] Fix README formatting.
+- [ ] Add functions tail, take, ranged, without, uniq, unique, union, sorted_index, every, some, and collect.
+- [ ] Add basic project files for build, test, etc, metadata, requirements, tox, etc.
+- [ ] Change license to MIT.
+- [ ] PEP8 compliance.
+- [ ] Only test on Python 2.7 for now.
+- [ ] Add at(), contains(), filter_(), find(), map_() and their aliases.
+- [ ] Add badge icons/links.
+- [ ] Add alpha stage note to readme.
+- [ ] Add TravisCI config.
+- [ ] Add contributing and contributors files.
+- [ ] Convert README to markdown.
+- [ ] Update pypi version URL for badge image.
+- [ ] Add Requirements and Overview sections.
+- [ ] Fix pip install line.
+- [ ] Add find_last_index() function
+- [ ] Use shields.io for badge images.
+- [ ] Add pull() function
+- [ ] Added test for find_last_index()
+- [ ] Added test for pull()
+- [ ] Added to CONTRIBUTORS.md
+- [ ] Rename "Lodash" to "Lo-Dash" to match what's used on Lo-Dash's site.
+- [ ] Allow "constants" to start with lowercase to bypass warnings related to aliasing function objects.
+- [ ] Disable start-args and allow "n" as valid variable name.
+- [ ] Only check for pylint errors when running test-tox.
+- [ ] Some pylint clean up.
+- [ ] Merge pull request #4 from nathancahill/master
+- [ ] Merge branch 'master' of github.com:dgilland/pydash
+- [ ] Remove py:method references in docstring.
+- [ ] Rearrange contributors and author.
+- [ ] Add MANIFEST.in.
+- [ ] Add remove().
+- [ ] Add "no cover" for functions not implemented yet.
+- [ ] Add Python 3 support.
+- [ ] Fix invocation of pylint in test-tox.
+- [ ] Add CHANGES.md.
+- [ ] Update README with Python compatibility.
+- [ ] Add xor().
+- [ ] Remove comment about aliased unzip. Seems to be coming back in latest dev of Lo-Dash.
+- [ ] Add details of first release.
+- [ ] Add sample().
+- [ ] Add shuffle().
+- [ ] Add env* and node_modules to gitignore.
+- [ ] Add size().
+- [ ] PEP8
+- [ ] Integrate tox into setup.py test.
+- [ ] Begin migration to using pytest.mark.parametrize decorator for testing.
+- [ ] Parametrize remaining test functions and add test fixtures.
+- [ ] Fix pull() to change the list instead of creating a new one
+- [ ] Add count_by() and find_last()
+- [ ] Merge pull request #5 from nathancahill/master
+- [ ] Make _iter_list_callback and _iter_dict_callback generators.
+- [ ] Add reduce_(), foldl(), inject(), reduce_right(), and foldr().
+- [ ] Fix Python 3 compat
+- [ ] Merge pull request #6 from nathancahill/functions
+- [ ] Switch from try/except to while count(value) > 0
+- [ ] Merge pull request #7 from nathancahill/master
+- [ ] Update CHANGES with count_by() and find_last().
+- [ ] Use reversed() and original function for _last() variations
+- [ ] Merge pull request #8 from nathancahill/functions
+- [ ] Reorganize
+- [ ] Merge pull request #9 from nathancahill/reorganize
+- [ ] Rename collection.py to collections.py for consistency.
+- [ ] Fix import of collections.py.
+- [ ] PEP8
+- [ ] Add group_by() and index_by()
+- [ ] Import Iterable from collections.
+- [ ] Add absolute_import to all files.
+- [ ] Add FIXME comments to cicular import issues.
+- [ ] Remove extraneous lambda usage.
+- [ ] Merge pull request #10 from nathancahill/functions
+- [ ] Merge branch 'master' of github.com:dgilland/pydash
+- [ ] PEP8
+- [ ] Pylint
+- [ ] Add max_() and min_()
+- [ ] test_reduce_right() typo
+- [ ] Add reject()
+- [ ] Add sort_by() and to_list()
+- [ ] Merge pull request #12 from nathancahill/functions
+- [ ] Update CHANGES and README with new functions additions.
+- [ ] Add after() and compose().
+- [ ] Add curry().
+- [ ] Pylint.
+- [ ] Ensure that curried functions can be reused.
+- [ ] Move Curry class to functions.py.
+- [ ] Add pep8 and pylint to TravisCI.
+- [ ] Use update() instead of dict(items()+items()) for Py3 compatibility.
+- [ ] Remove leading underscore from utils functions.
+- [ ] Add invoke()
+- [ ] Add for_each()
+- [ ] Add for_each_right()
+- [ ] Fixed typo
+- [ ] Python 3 compat
+- [ ] Fix dict callback for _iter_callback()
+- [ ] Rewrite for_each() and for_each_right()
+- [ ] Fix tests to include callback args
+- [ ] PEP8
+- [ ] Fix typo
+- [ ] Missing test
+- [ ] Merge pull request #13 from nathancahill/functions
+- [ ] Spacing.
+- [ ] Put comment on its own line.
+- [ ] Split tests into separate files.
+- [ ] Replace print function in tests with fixtures.noop to avoid print statements to console.
+- [ ] PEP8
+- [ ] Add once().
+- [ ] Add test for once().
+- [ ] Use class for after() object.
+- [ ] Update CHANGES with new functions added.
+- [ ] Add tests for for_each() and for_each_right() aliases.
+- [ ] Add partial() and partial_right().
+- [ ] Fix function reference.
+- [ ] Disable too-few-public-methods globally for pylint.
+- [ ] Add wrap().
+- [ ] PEP8
+- [ ] Add keys(), omit(), pairs(), pick(), transform(), and values().
+- [ ] Use callable() instead of checking for '__call__' attribute.
+- [ ] Add map_values().
+- [ ] Default callback to 1 for reset().
+- [ ] Explictly check if callback is instance of int/float in make_callback(). Fall back to identity.
+- [ ] PEP8
+- [ ] Add now(), constant(), identity(), property_(), prop(), random(), and noop().
+- [ ] Add pep8 to make test.
+- [ ] Add result().
+- [ ] Add times().
+- [ ] Add callback() and matches().
+- [ ] Use filter_() and matches() in where().
+- [ ] Use map_() and property_() in pluck().
+- [ ] Return bool for where style callbacks.
+- [ ] Add where and pluck style callbacks to count_by() tests.
+- [ ] Support identity() fallback in callback().
+- [ ] Add TODO about merging callback() with make_callback().
+- [ ] Modify functionality of first(), last(), initial(), and rest() to be inline with Lo-Dash v3.0.0.
+- [ ] Replace utils.make_callback() with utilities.callback().
+- [ ] Remove incorrect usage of where callback style in uniq().
+- [ ] Resolve circular imports.
+- [ ] Pylint.
+- [ ] Add memoize().
+- [ ] Add assign()
+- [ ] Add chain() and tap().
+- [ ] Disable missing-docstring for memoized function.
+- [ ] Fix assign()
+- [ ] Merge pull request #16 from nathancahill/functions
+- [ ] Import metadata in __init__.py.
+- [ ] Merge branch 'master' of github.com:dgilland/pydash
+- [ ] Compact code.
+- [ ] Update CHANGES with assign().
+- [ ] Add extend() as alias of assign().
+- [ ] Add unique_id().
+- [ ] Migrate to markdown docs to rest.
+- [ ] Convert remaining markdown docs to rest.
+- [ ] Do strict comparison of floating to True in random().
+- [ ] Assert random() returns int.
+- [ ] Add start of documentation.
+- [ ] Add sphinx and sphinx_rtd_theme to requirements.txt.
+- [ ] Add empty files for docs/_static and docs/_templates so that folders can be added to repo.
+- [ ] Add make docs to main makefile.
+- [ ] Add napoleon for enhanced docstring support in sphinx.
+- [ ] Add invert().
+- [ ] Fix formatting syntax.
+- [ ] Fix and alphabetize changes.
+- [ ] Add create_callback().
+- [ ] Update existing parameter/return docstrings to use Google style.
+- [ ] Disable global-statement warning in unique_id.
+- [ ] Add clone() and clone_deep().
+- [ ] Add additional classifiers to setup.
+- [ ] Add fudge factor to now() test.
+- [ ] Fix formatting syntax.
+- [ ] Add test that breaks when None is returned in invoke()
+- [ ] invoke() returns None when function returns None
+- [ ] Merge pull request #14 from nathancahill/returnnone
+- [ ] Add defaults(), find_key(), find_last_key(), for_in(), functions(), has() and is_<type>()
+- [ ] Use iteritems and setdefault
+- [ ] find_key() = find_last_key()
+- [ ] Change type to isinstance
+- [ ] Only import functions_
+- [ ] isinstance() instead of type()
+- [ ] One liner
+- [ ] Create TravisCI specific requirements file to slim down builds.
+- [ ] Merge pull request #19 from nathancahill/functions
+- [ ] Merge branch 'master' of github.com:dgilland/pydash
+- [ ] Update CHANGES with new additions.
+- [ ] Add merge() and update().
+- [ ] Remove reraise in _compat.
+- [ ] Pylint.
+- [ ] Update docstrings. Fix grammatical error. Add function ref.
+- [ ] Merge branch 'master' of github.com:dgilland/pydash
+- [ ] Modify last_index_of() to function like Lo-Dash's version.
+- [ ] Use sentence structure for Args/Returns sections in docstrings.
+- [ ] Add additional tests for find_index() and find_last_index().
+- [ ] Merge branch 'master' of github.com:dgilland/pydash
+- [ ] Rename utils.iter_() to utils.iterate().
+- [ ] Fix omit() to work with lists and allow callback to be optional.
+- [ ] Fix values() to work with lists.
+- [ ] Fix keys() to work with lists.
+- [ ] Update docstring for values().
+- [ ] Fix invert() to work with lists.
+- [ ] Fix pairs() to work with lists.
+- [ ] Fix has() to work with lists.
+- [ ] Fix omit() to properly handle callback=None.
+- [ ] Fix pick() to work with lists.
+- [ ] Update docstring for has().
+- [ ] Make callback optional for find_key() and for_in().
+- [ ] Use generator for has().
+- [ ] Move exceptions to pydash.exceptions.
+- [ ] Add debounce(), delay(), and throttle().
+- [ ] Removed unused imports and variables.
+- [ ] Move functions in utils.py to utilities.py.
+- [ ] Add is_date(), is_nan(), and parse_int().
+- [ ] Add is_equal().
+- [ ] Pylint.
+- [ ] Remove fixtures.data factory.
+- [ ] Add is_object() and is_plain_object().
+- [ ] For is_equal() only walk objects if callback is callable and objects are compatible.
+- [ ] Fix docstring typo.
+- [ ] Move update() declaration down so that it's alphabetized.
+- [ ] Remove update() from public API. merge() can be used for everything update() does.
+- [ ] Minor update to docstring.
+- [ ] Add escape() and unescape().
+- [ ] Add larger buffer to wait check.
+- [ ] Add comment about generic utility methods.
+- [ ] Move main functions to api/ folder.
+- [ ] Add buffer to debounce test.
+- [ ] Add make docs to CONTRIBUTING.
+- [ ] Format docstrings.
+- [ ] Remove previous build of docs when building new docs.
+- [ ] Prefix private methods in utilities with "_".
+- [ ] Add support for reversing order of dict/list in _iter_callback().
+- [ ] Modify find_last(), for_each_right(), and find_last_index() to use reverse=True option for _iter_callback() to preserve proper indexing.
+- [ ] Implement for_in_right() and for_own_right() as separate functions that use reverse=True option of _iter_callback().
+- [ ] Add see also sections that list function aliases.
+- [ ] Add short-text for github links.
+- [ ] Fix PEP8 link and minor wording changes.
+- [ ] Add viewcode extension to docs.
+- [ ] Split API reference into Public and Full reference sections.
+- [ ] Add mention about possible future version of callback handling.
+- [ ] Modify heading title.
+- [ ] Rename api docs.
+- [ ] Minor wording and formatting changes.
+- [ ] Add link to project on pypi.
+- [ ] Add doctest to quickstart.
+- [ ] Update docstrings with more detailed descriptions of input/output args.
+- [ ] Update pylint to v1.3.0 and rearrange pylintrc based on default arrangement from new version.
+- [ ] Use _iter_callback() for count_by().
+- [ ] Update docstrings.
+- [ ] Merge branch 'develop' of github.com:dgilland/pydash into develop
+- [ ] Change "iterable" to "list|dict" in docstrings.
+- [ ] Make callback optional for group_by() and index_by().
+- [ ] Use dict collections' values for max_(), min_(), shuffle(), sort_by(), and to_list().
+- [ ] Pass kargs to invoked method.
+- [ ] Remove unneeded early returns for min_() and max_().
+- [ ] Remove unneeded handling of None callback as _iter_callback() will take care of it.
+- [ ] Make callback optional for sort_by().
+- [ ] Add additional test cases for collections which have special handling for dicts.
+- [ ] Update docstrings with Args/Returns sections.
+- [ ] Apply list to collection to handle Python3 issue where collection.values() doesn't return list which is needed by random.shuffle().
+- [ ] Conditionally add sphinxcontrib.napoleon to extensions when not on RTD.
+- [ ] Rename TravisCI requirements file for consistency.
+- [ ] Add requirements file for RTD.
+- [ ] Update location of TravisCI requirements file.
+- [ ] Alphabetize imports.
+- [ ] Add missing import and test for include().
+- [ ] Add shiny badges to docs.
+- [ ] Add link to documentation and remove other information.
+- [ ] Add link to documentation in setup.py.
+- [ ] Fix link to Lo-Dash website.
+- [ ] Include contents of README.rst in both setup.py and docs/index.rst.
+- [ ] Adjust spacing.
+- [ ] Group images into container.
+- [ ] Move back to having only 1 API doc.
+- [ ] Use inline images and add Links section.
+- [ ] Add __all__ variables to modules.
+- [ ] Fix doc references.
+- [ ] Fix api reference.
+- [ ] Include quickstart on main doc page.
+- [ ] Rename title to Changelog.
+- [ ] Capitalize Tables.
+- [ ] Remove references to strict equality comparison in docstrings.
+- [ ] Release v1.0.0.
+- [ ] Simplify uniq() to use only one uniquing function.
+- [ ] Add _deprecated() decorator.
+- [ ] Deprecate tail().
+- [ ] Add actual deprecation of tail().
+- [ ] Add drop(), drop_right(), drop_while(), and drop_right_while().
+- [ ] Add __all__ in collections.py.
+- [ ] Alphabetize collection tests.
+- [ ] Add partition().
+- [ ] Add before().
+- [ ] Remove AfterBeforeBase and have Before inherit from After instead.
+- [ ] Add curry_right().
+- [ ] Alphabetize class definitions.
+- [ ] Add negate().
+- [ ] Add Args/Returns to negate() docstring.
+- [ ] Add chunk().
+- [ ] Create new api.strings module and move escape and unescape there.
+- [ ] Move range_() from api.arrays to api.utilities.
+- [ ] Add docstring for api module.
+- [ ] Alphabetize function defs in api.objects.
+- [ ] Add is_error(), keysIn(), and valuesIn().
+- [ ] Add Strings to API docs.
+- [ ] Add versioning information to docs.
+- [ ] Add attempt().
+- [ ] Move tests for moved functions and create test_strings.py.
+- [ ] Add slice_().
+- [ ] Add sorted_last_index().
+- [ ] Add take(), take_right(), take_right_while(), and take_while().
+- [ ] Add is_re() and is_reg_exp().
+- [ ] Add string functions:
+- [ ] Use "//" for division to ensure remainder is dropped in Python3.
+- [ ] Rename keysIn() and valuesIn() to keys_in() and values_in().
+- [ ] Add versionadded and versionchanged notations to docstrings.
+- [ ] Add doc page about templating.
+- [ ] Make RE_WORD_SEPARATORS a compiled regex object.
+- [ ] Reword templating.rst to be 3rd person.
+- [ ] Add "()" after function names.
+- [ ] Add quotations around space character.
+- [ ] Activate virtualenv when running make docs.
+- [ ] Release v1.1.0.
+- [ ] Put full composition into single while loop.
+- [ ] Pylint.
+- [ ] Add flatten_deep(), modify flatten() to be shallow by default.
+- [ ] Rename create_callback to iteratee and private utility functions.
+- [ ] Undeprecate tail and make alias of rest.
+- [ ] Fix import rename.
+- [ ] Add intersperse() and intercalate().
+- [ ] Add iterated().
+- [ ] Initial return value to None for composed functions in case empty function list given.
+- [ ] Add interleave().
+- [ ] Move iter-list functions to api.arrays.
+- [ ] Expand on differences with Lo-Dash.
+- [ ] Add v2 dev version designation.
+- [ ] Rename getitem and setitem to get_item and set_item respectively.
+- [ ] Add set_path().
+- [ ] Rename test function name.
+- [ ] Add rename_keys().
+- [ ] Use dict comprehension.
+- [ ] Add warning about obj being modified in place.
+- [ ] Remove helper function, update(), and merge into merge().
+- [ ] Specify in docstring that get_item() is safe only if default value provided.
+- [ ] Add update_path(). Modify set_path() to use update_path(). Deep clone obj used in set/update_path().
+- [ ] Modify chain() to be lazy.
+- [ ] Modify is_number() to return False for booleans.
+- [ ] Add predicates:
+- [ ] Add is_decreasing(), is_increasing(), is_strictly_increasing(), is_strictly_decreasing(), and is_monotone().
+- [ ] Move predicate functions from api.objects to api.predicates.
+- [ ] Add explode() and implode().
+- [ ] Use generators for walking in:
+- [ ] Add has_path() and get_path().
+- [ ] Add to_string().
+- [ ] Refactor imports:
+- [ ] Add "op" as valid name.
+- [ ] Add conjoin() and disjoin().
+- [ ] Add versionadded metadata to docstrings.
+- [ ] Add juxtapose().
+- [ ] Sort the results of functions().
+- [ ] Minor readability changes.
+- [ ] Flatten pydash module and move api/ files into module root. Rename functions() to callables() to avoid conflict.
+- [ ] Add doc note about functions() rename to callables().
+- [ ] Add "multivalue" argument to invert().
+- [ ] Add "default" argument to result().
+- [ ] Add flow() and flow_right(); make compose() an alias of flow_right().
+- [ ] Add cat() and mapcat().
+- [ ] Make slice_() accept optional start/end arguments.
+- [ ] Add split_at().
+- [ ] Add docstrings for cat() and map().
+- [ ] Add reductions() and reductions_right().
+- [ ] Use NoValue as default for get_item() which eliminates need for "use_default" argument.
+- [ ] Fix typo.
+- [ ] Add call_callback() helper function to apply only the supported arguments to a callback call.
+- [ ] Update function references.
+- [ ] Add note about callback invocation.
+- [ ] Add functions that are in pydash but not LoDash.
+- [ ] Add thru().
+- [ ] Adjust wording.
+- [ ] Pylint.
+- [ ] Remove travis and sphinx specific requirements files.
+- [ ] Add serve-docs make target.
+- [ ] Add missing functions from __all__.
+- [ ] Fix tabs to spaces.
+- [ ] Fix function references.
+- [ ] Add "_" instance to pydash that supports method calling and method chaining.
+- [ ] Add Predicates section to API docs.
+- [ ] Add "_" instance to docs.
+- [ ] Pylint.
+- [ ] Update templating section.
+- [ ] Update project description.
+- [ ] Add words(), js_match(), and js_replace().
+- [ ] Minor formatting in docstrings.
+- [ ] Use pyd.to_string() for string conversion.
+- [ ] Add test case for empty match.
+- [ ] Add _Underscore class for enabling "_" instance instead of overloading Chain class.
+- [ ] PEP8.
+- [ ] Workaround missing "flags" argument in re.sub on Python 2.6.
+- [ ] Only convert to string if obj is not already a string.
+- [ ] Add deburr().
+- [ ] Release v2.0.0.
+- [ ] Add upgrading doc.
+- [ ] Update changes with "_" instance reference.
+- [ ] Rename _Underscore to _Dash.
+- [ ] Add note about new features in upgrading section.
+- [ ] Bump dev version.
+- [ ] Add callback arg inspection support for classes that implement __call__.
+- [ ] Remove unnecessary callback default.
+- [ ] Add numerical module.
+- [ ] Fix test for round_() so that it passes in both Python 2 and 3.
+- [ ] Add median().
+- [ ] Add docstrings for numerical functions.
+- [ ] Add mapiter().
+- [ ] Add numerical module to docs.
+- [ ] Release v2.1.0.
+- [ ] Combine git push steps.
+- [ ] Add install_requires to metadata.
+- [ ] Add ``url`` function for combining url parts and params into a single url.
+- [ ] Fix snake_case() so that text is converted to lower case.
+- [ ] Fix argument name in url() docstring.
+- [ ] Support escaping "." characters in path string keys.
+- [ ] Add reverse().
+- [ ] Update changes.
+- [ ] Add append, join, pop, push, shift, sort, splice, unshift, and concat.
+- [ ] Adapt sort() to work consistently between Python 3 and 2.
+- [ ] PEP8
+- [ ] Add test for exception in sort().
+- [ ] Add deep_get and deep_set.
+- [ ] Make has() work with deep paths and make has_path() and deep_has() aliases.
+- [ ] Revert behavior of has() so that it's not deep.
+- [ ] Add deep_pluck(), deep_property(), and deep_prop().
+- [ ] Make get_path() handle list indexing using strings.
+- [ ] Add deep_map_values().
+- [ ] Add docstring for deep_pluck().
+- [ ] PEP8
+- [ ] Fix bug in chaining method access test which skipped the actual test.
+- [ ] Make "_" instance alias method access to methods with a trailing underscore in their name.
+- [ ] Use "_" instead of pyd as alias of pydash module in tests.
+- [ ] Update docs with new methods and features.
+- [ ] Fix typo in docs and add concat to differences.
+- [ ] Release v2.2.0.
+- [ ] Support ``type`` callbacks (e.g. ``int``, ``float``, ``str``, etc) by only passing a single callback argument when invoking the callback.
+- [ ] Release v2.3.0.
+- [ ] Prioritize argcount for types over argspec. Move varargs check to main logic tree.
+- [ ] Update requirements package versions.
+- [ ] Drop testing support for Python 3.2.
+- [ ] Add pylint-errors to make test.
+- [ ] Add pipe and pipe_right as aliases of flow and flow_right.
+- [ ] Fix ``merge`` so that trailing ``{}`` or ``[]`` don't overwrite previous source values.
+- [ ] Remove "*" character from docstrings. Having them results in those parameters missing in docs build.
+- [ ] Add py_ as alias of _.
+- [ ] Release v2.3.1.
+- [ ] Merge branch 'develop' of github.com:dgilland/pydash into develop
+- [ ] Add missing pipe and pipe_right to __all__.
+- [ ] Make ``merge`` accept a callback as a positional argument if it is last.
+- [ ] Fix ``merge`` and ``assign``/``extend`` so they apply ``clone_deep`` to source values before assigning to destination object.
+- [ ] Release v2.3.2.
+- [ ] added quote and surround
+- [ ] Remove python-coveralls from requirements.txt and add to travis.yml's after_success block.
+- [ ] Merge branch 'develop' of https://github.com/dgilland/pydash into pr-1
+- [ ] added tests for strings.quote() and strings.surround()
+- [ ] fixed pep8 errors
+- [ ] added string functions ensure_starts_with and ensure_ends_with
+- [ ] fixed pep8 errors
+- [ ] fixed pep8 errors
+- [ ] added string functions ensure_starts_with and ensure_ends_with to __all__
+- [ ] added quote() and surround() to strings.__all__
+- [ ] changed one-letter variable
+- [ ] Made surround() being safe with numbers and strings.
+- [ ] Made quote() being safe with numbers and strings.
+- [ ] strings.__all__ as tuple
+- [ ] Merge pull request #38 from k7sleeper/ensure-string-functions
+- [ ] Merge branch 'develop' into k7sleeper/pr-1
+- [ ] Merge pull request #40 from k7sleeper/all-as-tuple
+- [ ] Change __all__ to tuple.
+- [ ] added folder .idea
+- [ ] Revert "added folder .idea"
+- [ ] removed unnecessary blank line
+- [ ] Merge pull request #41 from k7sleeper/develop
+- [ ] adjust informal files due to my contributions
+- [ ] Merge pull request #42 from k7sleeper/authors-and-changes
+- [ ] fix minor formatting error
+- [ ] Merge pull request #43 from k7sleeper/fix-documentation
+- [ ] Release v2.4.0.
+- [ ] Explicitly include "MIT" in license text.
+- [ ] Minor docstring modifications.
+- [ ] Add decapitalize.
+- [ ] Make camel_case work with empty string.
+- [ ] Add chop.
+- [ ] Add clean.
+- [ ] Add chars.
+- [ ] Add count_substr.
+- [ ] Add has_substr.
+- [ ] Add swap_case.
+- [ ] Add insert_substr.
+- [ ] Add replace.
+- [ ] Add is_blank.
+- [ ] Alphabetize function.
+- [ ] Rename test function so that function being tested's name comes first.
+- [ ] Add lines.
+- [ ] Add predecessor and pred.
+- [ ] Add successor and succ.
+- [ ] Make splice work with strings.
+- [ ] Remove pred and succ as aliases to predecessor and successor.
+- [ ] Add title_case.
+- [ ] Add to_number.
+- [ ] Add missing "optional" remarks in Args and make wording for default value is consistent.
+- [ ] Add missing versionadded comment.
+- [ ] Add to_boolean.
+- [ ] PEP8.
+- [ ] Add unquote.
+- [ ] Merge quote() tests into a single function.
+- [ ] Fix kebab_case so that it casts string to lower case.
+- [ ] Release v2.4.1.
+- [ ] Merge branch 'develop' into feature-v3
+- [ ] Add utf8 coding to all python files.
+- [ ] Add slugify.
+- [ ] Make capitalize() only modify the first character of the string.
+- [ ] Add class_case().
+- [ ] Add human_case().
+- [ ] Add underscore_case() as alias to snake_case().
+- [ ] Add string_left(), string_left_back(), string_right(), and string_right_back().
+- [ ] Add re_replace().
+- [ ] Add explicit tests for repeat().
+- [ ] Add strip_tags().
+- [ ] Add missing import.
+- [ ] Use re_replace() in js_to_py_re_replace().
+- [ ] PEP8.
+- [ ] Fix test name.
+- [ ] Rename "string_" functions to "substr_" and replace "back" with "end.
+- [ ] Add number_format().
+- [ ] Add series_phrase() and series_phrase_serial().
+- [ ] Add prune().
+- [ ] Add truncate() as alias of trunc().
+- [ ] Bump dev version.
+- [ ] Restore default behavior of capitalize() but provide option to not convert rest of string to lower case.
+- [ ] Add chop_right().
+- [ ] Add separator_case().
+- [ ] to_string(None) -> '' instead of 'None'
+- [ ] fixed pep8
+- [ ] make camel_case() and capitalize() None-safe
+- [ ] Merge pull request #46 from k7sleeper/feature-v3
+- [ ] Move arrays.join to strings.join. Make implode an alias of join.
+- [ ] Make explode an alias of split. Modify split to default to splitting on whitespace.
+- [ ] Document to_string's behavior change.
+- [ ] Apply to_string() to `text` argument in string functions.
+- [ ] complete documentation
+- [ ] complete documentation
+- [ ] make chop() None-safe
+- [ ] make chop_right() None-safe
+- [ ] fix minor formatting error
+- [ ] fix minor formatting error
+- [ ] complete documentation
+- [ ] make class_case() None-safe
+- [ ] make clean() None-safe
+- [ ] make chars() None-safe
+- [ ] fixed pep8
+- [ ] make count_substr() and capitalize() None-safe
+- [ ] make decapitalize() None-safe
+- [ ] make ends_with() None-safe
+- [ ] make ends_with() None-safe
+- [ ] make join() None-safe
+- [ ] fixed pep8
+- [ ] make kebab_case() None-safe
+- [ ] make lines() None-safe
+- [ ] make quote() and surround() None-safe
+- [ ] test trim_right() for None-safety
+- [ ] test trim_left() for None-safety
+- [ ] test trim() for None-safety
+- [ ] test title_case() for None-safety
+- [ ] test swap_case() for None-safety
+- [ ] test substr_right_end() for None-safety
+- [ ] test substr_right() for None-safety
+- [ ] test substr_left_end() for None-safety
+- [ ] test substr_left() for None-safety
+- [ ] Merge pull request #47 from k7sleeper/feature-v3
+- [ ] test words() for None-safety
+- [ ] test unquote() for None-safety
+- [ ] test unescape() for None-safety
+- [ ] test trunc() and truncate() for None-safety Fix trunc() and truncate() so that they handle texts shorter than the max string length correctly
+- [ ] test deburr() for None-safety
+- [ ] test escape() for None-safety
+- [ ] test escape_reg_exp() for None-safety
+- [ ] make ensure_starts_with() None-safe
+- [ ] make ensure_ends_with() None-safe
+- [ ] make has_substr() None-safe
+- [ ] test human_case() for None-safety
+- [ ] test insert_substr() for None-safety
+- [ ] make js_replace() None-safe
+- [ ] test pad() for None-safety
+- [ ] test pad_left() for None-safety
+- [ ] test pad_right() for None-safety
+- [ ] test prune() for None-safety
+- [ ] added tests for re_replace()
+- [ ] make re_replace() None-safe
+- [ ] make re_replace() None-safe
+- [ ] Make re_replace() accept non-stirng arguments
+- [ ] make replace() None-safe
+- [ ] test repeat() for None-safety
+- [ ] fixed PEP8 issues
+- [ ] fixed PEP8 issues
+- [ ] fixed PEP8 issues
+- [ ] Pin astroid package at last version that was compatible with Python 2.6.
+- [ ] Pin astroid package at last version that was compatible with Python 2.6.
+- [ ] Merge branch 'feature-v3' of https://github.com/dgilland/pydash into feature-v3
+- [ ] Merge pull request #56 from k7sleeper/feature-v3
+- [ ] test strip_tags() for None-safety
+- [ ] make starts_with() None-safe
+- [ ] make ends_with() None-safe
+- [ ] test split() for None-safety
+- [ ] test snake_case() for None-safety
+- [ ] test slugify() for None-safety
+- [ ] make series_phrase_serial() None-safe
+- [ ] make series_phrase() None-safe
+- [ ] test slugify() for None-safety
+- [ ] Merge pull request #57 from k7sleeper/feature-v3
+- [ ] Add ary. Closes #49.
+- [ ] Catch TypeErrors in After.
+- [ ] Alphatbetize changes.
+- [ ] PEP8.
+- [ ] Make parametrized values lists for consistency.
+- [ ] Add rearg. Closes #50.
+- [ ] Make ``chain`` support late passing of initial ``value`` argument.
+- [ ] Pylint compliance changes.
+- [ ] When calling a callback, guess at the argcount for builtin functions or methods.
+- [ ] Remove *args from callback lambdas.
+- [ ] Remove unneccessary lambda usage.
+- [ ] Add property_of() and prop_of().
+- [ ] Spacing.
+- [ ] Add reasons why OK and not OK.
+- [ ] Add property_of and prop_of to __all__.
+- [ ] Add is_match().
+- [ ] Use more explicit variable names.
+- [ ] Add is_builtin() and is_native().
+- [ ] Use is_builtin for builtin function/method check.
+- [ ] Add is_dict() as alias of is_plain_object().
+- [ ] Add to_dict() and to_plain_object().
+- [ ] Add version changed doc info.
+- [ ] Add reverse option to sort_by().
+- [ ] Add sort_by_all().
+- [ ] Reorder function arguments for after(), before(), times(), js_match(), and js_replace().
+- [ ] Compatibility changes for Python 3.
+- [ ] Remove py32 from tox.
+- [ ] Make iterators and callbacks work with class instance properties of non-list, non-dict, and non-iterable objects.
+- [ ] Add object tests for pick.
+- [ ] Set default _Dash call value to NoValue to support late value passing.
+- [ ] Make Chain use a class attribute to reference the pydash module.
+- [ ] Make late value chains reusable.
+- [ ] Pylint.
+- [ ] Change default port for serve-docs.
+- [ ] Use different variable name for clarity.
+- [ ] Fix ``remove`` so that array is modified after callback iteration.
+- [ ] Add reload-docs command.
+- [ ] Add chaining section to docs.
+- [ ] Add v3.0.0 info to docs.
+- [ ] Make py_ the main object.
+- [ ] Use get_item() in first() and last().
+- [ ] Add examples to docstrings.
+- [ ] Add default=None to get_item() calls.
+- [ ] Fix test to work on Python 3.
+- [ ] Use assert instead of output capture since dict order not deterministic.
+- [ ] Add duplicates().
+- [ ] Fix ``remove`` so that array is modified after callback iteration.
+- [ ] Release v2.4.2.
+- [ ] Merge branch 'develop' into feature-v3
+- [ ] Fix release date.
+- [ ] Merge branch 'develop' into feature-v3
+- [ ] Add kudos to k7sleeper.
+- [ ] Add examples for all collection methods.
+- [ ] Use deep property for sort_by_all().
+- [ ] Add docstring examples.
+- [ ] Add aliases is_bool, is_int, and is_num.
+- [ ] Add is_tuple().
+- [ ] Make partial and partial_right accept keyword arguments.
+- [ ] Make ``is_indexed`` return ``True`` for tuples.
+- [ ] Fix ``deep_has`` to return ``False`` when ``ValueError`` raised during path checking.
+- [ ] Accept partial argument callbacks for assign and deep_map_values.
+- [ ] Attempt using path keys as integers.
+- [ ] Support tuples in is_match check.
+- [ ] Make ``pluck`` style callbacks support deep paths.
+- [ ] Use is_match for matches.
+- [ ] Use datetime module for calculating now().
+- [ ] Return range as generation.
+- [ ] Reset ID_COUNTER before testing unique_id.
+- [ ] Add docstring examples.
+- [ ] Fix Python 2.6 and Python 3 compatibility issues.
+- [ ] Rename class_case to pascal_case.
+- [ ] Rename "lower_rest" argument to "strict".
+- [ ] Fix predecessor and successor functions.
+- [ ] PEP8.
+- [ ] Update pep8 package.
+- [ ] Fix pad so that it doesn't over pad beyond provided length.
+- [ ] Fix text length comparision for skipping prune.
+- [ ] [Simplify unquote.](https://github.com/dgilland/pydash/commit/5daff0637e7eaa91b7b5a2fda698ac42becbf825#diff-091132c6bb6078c13100fe51e33ee807)
+- [ ] Flatten paths in url().
+- [ ] Add examples to docstrings.
+- [ ] Add chain.run() as alias of chain.value().
+- [ ] Make chain() not store computed value().
+- [ ] Make drop, drop_right, take, and take_right have default n=1.
+- [ ] Add chain.commit().
+- [ ] Add method chain.plant().
+- [ ] Remove "possible" from any breaking change notes.
+- [ ] Pylint.
+- [ ] Make iteratee() the main function definition over callback().
+- [ ] Update "strict" argument name.
+- [ ] Move doctest setup to api.rst.
+- [ ] Fix links for Jinja2 and Mako.
+- [ ] Minor doctest changes for Sphine compatibility.
+- [ ] Update chaining doc with new features.
+- [ ] PEP8.
+- [ ] Update upgrade guide for v3.
+- [ ] Minor addition to project summary.
+- [ ] Release v3.0.0.
+- [ ] Update tagline in README.
+- [ ] Version bump since PyPI doesn't allow re-use of deleted version numbers.
+- [ ] Fix typo.
+- [ ] Apply consistent formatting for breaking change notices.
+- [ ] Add fill().
+- [ ] Add in_range().
+- [ ] Add start_case().
+- [ ] Add matches_property() and matches property style callback support.
+- [ ] Add shallow pluck style callback support.
+- [ ] Return False if in_range value is not a number.
+- [ ] Add tuple form for matches_property to changelog.
+- [ ] Add callbacks section to docs.
+- [ ] Remove detailed Lo-Dash function/alias differences.
+- [ ] Add spread().
+- [ ] Use raw strings so blackslashes don't have to be escaped.
+- [ ] Fix doctests in docs.
+- [ ] Add deepath section to docs.
+- [ ] Use flat-square badges.
+- [ ] Release v3.1.0.
+- [ ] Add orders argument to sort_by_all() and sort_by_order() as alias.
+- [ ] Make words() handle single character words better.
+- [ ] Add pattern argument to words.
+- [ ] Fix is_match to not compare obj and source types using type and instead use isinstance comparisons exclusively.
+- [ ] Release v3.2.0.
+- [ ] Fix bug in reduce_right where collection was not reversed correctly.
+- [ ] Release v3.2.1
+- [ ] Catch AttributeError in helpers.get_item and return default value if set.
+- [ ] Release v3.2.2.
+- [ ] Add unzip_with() and zip_with().
+- [ ] Add mode_args().
+- [ ] Add ceil() and floor().
+- [ ] Make add() support adding two numbers if passed in positionally.
+- [ ] Add method() and method_of().
+- [ ] Add gt(), gte(), lt(), lte().
+- [ ] Add is_iterable().
+- [ ] Add defaults_deep() and deep_defaults().
+- [ ] Add map_keys().
+- [ ] Add get().
+- [ ] Add set_().
+- [ ] Simplify aliases for has() and get().
+- [ ] Remove deep_defaults as alias.
+- [ ] Use get() instead of deep_get() alias.
+- [ ] Release v3.3.0.
+- [ ] Optimize call_callback() so that is_builin() is called only if there's no argspec.
+- [ ] Don't call getargspec for "__call__" method if it doesn't exist.
+- [ ] Eliminate call to has() in is_match() and just try/except instead.
+- [ ] Revert change to is_builtin() call ordering in call_callback() due to failing tests on Python 3.4.
+- [ ] Optimize is_builtin() to check for BuiltinFunctionType instance and then perform dict key lookup instead of list lookup.
+- [ ] Check for hash-ability while constructing _compat.builtins.
+- [ ] Add absolute_import to _compat.
+- [ ] Optimize callback argument inspection by explicitly setting arg count to bypass inspect.getargspec().
+- [ ] Skip path key regex parsing if keys don't contain special characters.
+- [ ] Precompute argcount of callback before calling call_callback().
+- [ ] Cache prop key function in matches_property().
+- [ ] Cache argcount of callbacks when call_callback() is used directly.
+- [ ] Optimize arrays.push/append.
+- [ ] Rename call_callback to callit.
+- [ ] Eliminate builtin argcount guessing and only pass in a single argument to builtin functions.
+- [ ] Update CHANGES.
+- [ ] Release v3.4.0.
+- [ ] Update to Sphinx 1.3.1.
+- [ ] Apply workaround fix for Python 3.5 issue with pytest and its doctest call.
+- [ ] Update requirements.txt
+- [ ] Release v3.4.1.
+- [ ] Enable containers on TravisCI.
+- [ ] Fix bug in ``start_case`` where capitalized characters after the first character of a word where mistakenly cast to lower case.
+- [ ] Release v3.4.2.
+- [ ] Fix minor issue in deep path string parsing so that list indexing in paths can be specified as "foo[0][1].bar" instead of "foo.[0].[1].bar". Both formats are now supported.
+- [ ] Ignore ".cache" directory.
+- [ ] Release v3.4.3.
+- [ ] Update docstring for objects.merge to reflect correct behavior of callback usage.
+- [ ] Shallow copy each source in assign/extend instead of deep copying.
+- [ ] Call copy.deepcopy in merge instead of the more resource intensive clone_deep.
+- [ ] Release v3.4.4.
+- [ ] add optional 'default' parameter for max_/min_ function similar to Python3  min/max
+- [ ] _iterator_with_default iterator returns the default value for an empty collection
+- [ ] Python 3 iterator compatibliitty
+- [ ] Merge pull request #65 from AnsonT/feature/min_max_default
+- [ ] Fix docstring issues.
+- [ ] Revamp dev project structure and tooling.
+- [ ] Drop offiical Python 2.6 and 3.3 support in testing.
+- [ ] Lint fixes.
+- [ ] Added strings.lower_case() method (#67)
+- [ ] Added strings.upper_case() method (#68)
+- [ ] Added strings.lower_first() and strings.upper_first methods (#69)
+- [ ] Fix bug in is_match where comparison between an empty source argument returned None instead of True.
+- [ ] Update changelog.
+- [ ] Release v3.4.5.
+- [ ] Added numerical.subtract() method (#70)
+- [ ] Merge branch 'develop' of github.com:dgilland/pydash
+- [ ] Added numerical.divide() and numerical.multiply() methods (#72)
+- [ ] Added utilities.nth_arg() method (#73)
+- [ ] Added utilities.range_right() method (#74)
+- [ ] Added utilities.to_path() method (#75)
+- [ ] Handle case in get_item in pydash/helpers.py, where attempt to turn key (#77)
+- [ ] Only include integer casting in try/except block.
+- [ ] Handle case in get_item in pydash/helpers.py, where attempt to turn key (#77)
+- [ ] Only include integer casting in try/except block.
+- [ ] Update changelog and authors.
+- [ ] Release v3.4.6.
+- [ ] Merge branch 'master' into develop
+- [ ] Fix bug in get() where an iterable default was iterated over instead of being returned when an object path wasn't found.
+- [ ] Release v3.4.7.
+- [ ] Merge branch 'master' into develop
+- [ ] Add intersection_by, intersection_with and make intersection work with unhashable types.
+- [ ] Make range_right into a generator.
+- [ ] Return an empty list when no args are given to range_.
+- [ ] Fix project references.
+- [ ] Apply consistent heading characters.
+- [ ] Have range_ and range_right use same base_range() function.
+- [ ] Fix Python 2.7 incompatibility.
+- [ ] Fix intersection|intersection_by|intersection_with so they don't return duplicate values.
+- [ ] Add uniq_by and uniq_with. Remove callback arg from uniq.
+- [ ] Fix docstring.
+- [ ] Add max_by and min_by. Remove callback support from max_ and min_ (moved to *_by functions).
+- [ ] Added strings.to_lower and strings.to_upper methods
+- [ ] Added conversion of the given text to string first in to_lower and to_upper methods
+- [ ] Added predicates.eq() method (#82)
+- [ ] Added functions.flip() method
+- [ ] Added arrays.nth() method
+- [ ] Added predicates.is_equal_with() method
+- [ ] Added predicates.is_set() method
+- [ ] Made the arguments reversed before calling the function in flip() method; Made is_equal_with() a separate method; is_equal() will be calling is_equal_with() now; Added a test case for out of range in nth()
+- [ ] Modified the versions in both is_equal and is_equal_with methods
+- [ ] Changed method flip() to class
+- [ ] Add unary.
+- [ ] Add flat_map and flat_map_deep.
+- [ ] Add missing versionadded to unary() docstring.
+- [ ] Add flatten_depth(). Remove "is_deep" arg from flatten().
+- [ ] Add flat_map_depth.
+- [ ] Added utilities.cond() method
+- [ ] Added utilities.stub_string() method; Changed utilities.times() method to handle 0 positional arguments in the callback
+- [ ] Added utilities.stub_true() method
+- [ ] Added utilities.stub_false() method
+- [ ] Added utilities.stub_array() method
+- [ ] Added utilities.stub_dict() method
+- [ ] Added utilities.default_to() method
+- [ ] Changed stub_array to stub_list; times() can now use callit() and getargcount() methods from pydash.helpers for its functionality
+- [ ] Remove unused imports
+- [ ] getfullargspec: getargspec -> getfullargspec in python 3
+- [ ] Added collections.sample_size() method
+- [ ] Optimize implementation of invoke.
+- [ ] Add missing Sphinx theme override CSS.
+- [ ] Support accessing objects by attribute in get().
+- [ ] Update Python version support in setup.py to exclude 2.6, 3.2, and 3.3.
+- [ ] Update dev packages.
+- [ ] Remove extra line.
+- [ ] Add invoke_map.
+- [ ] Update changelog for get().
+- [ ] Add clamp().
+- [ ] Split add() functionality into add(), sum_(), and sum_by().
+- [ ] Update docstrings for sum_() and sum_by().
+- [ ] Favor mean() and moving_mean() over "average". Move callback support from mean() to mean_by(). Remove mean/moving_mean aliases.
+- [ ] getfullargspec: getargspec -> getfullargspec in python 3
+- [ ] Update changelog.
+- [ ] Release v3.4.8.
+- [ ] Merge branch 'master' into develop
+- [ ] Make difference() return duplicates and maintain sort order. Add difference_by() and difference_with().
+- [ ] Added utilities.over(), utilities.over_every() and utilities.over_some() methods
+- [ ] Added arrays.from_pairs() method
+- [ ] Added from_pairs to __all__ in arrays module
+- [ ] Added arrays.sorted_uniq() method
+- [ ] Added arrays.union_by() and arrays.union_with() methods
+- [ ] Replaced the arguments with list of lists in from_pairs(), union_by(), union_with() methods instead of passing in tuple of lists; Minor modifications in docstrings
+- [ ] Changed back the arguments for union(), union_by() and union_with() to *args format
+- [ ] Changed the argument style for union methods relative to intersection methods
+- [ ] Merge branch 'develop' of github.com:dgilland/pydash into develop
+- [ ] Add conforms() and conforms_to().
+- [ ] Added method arrays.pull_all()
+- [ ] Added arrays.sorted_index_of() method
+- [ ] Modified the functionality of sorted_index_of inline to lodash implementation
+- [ ] bdist_wheel replaces wheel
+- [ ] Simplify docs/conf.py.
+- [ ] Add pull_all_by().
+- [ ] Maintain sort order of supplied arguments to xor() by not using builtin set().
+- [ ] Ensure that array functions return copies of main array argument to avoid potential identity reference mixups since its expected that a new copy is always returned.
+- [ ] Use without() in pull_all().
+- [ ] Use difference() and difference_by() in pull_all_by().
+- [ ] Add pull_all_with().
+- [ ] Refactor callback selection from *args and **kargs into helper function, parse_callback().
+- [ ] Add sorted_index_by(), sorted_last_index_by(), and sorted_last_index_of().
+- [ ] Add sorted_uniq_by().
+- [ ] Add xor_by() and xor_with().
+- [ ] Add is_match_with().
+- [ ] Update changelog.
+- [ ] Use a token based parser for path keys so that mixed list or dict defaults can be used based on whether key or index style substrings were used.
+- [ ] Add zip_object_deep().
+- [ ] Modify "obj" in place for set_(), set_path(), and update_path().
+- [ ] Add omit_by() and pick_by().
+- [ ] Add invert_by().
+- [ ] Fixed rendering of docstring
+- [ ] Add assign_with() and remove callback argument from assign().
+- [ ] Add clone_with() and clone_deep_with().
+- [ ] Only use merge() callback result if result is not None.
+- [ ] Add merge_with().
+- [ ] Add to_integer().
+- [ ] Make function returned by constant() ignore arguments.
+- [ ] Ignore for coverage.
+- [ ] Future proof Python version check so that only Python 2 is handled as special case.
+- [ ] Add set_with(), update(), update_with(). Remove set_path() and update_path().
+- [ ] Rename get_item() and set_item() to base_get() and base_set().
+- [ ] Fix code examples in docs. Fix docstring variable name conflicts for Sphinx.
+- [ ] Upgrade to Sphinx 1.5.3.
+- [ ] Add unset().
+- [ ] Add docstring note about unset's limitations.
+- [ ] Organize next release's items into subsections.
+- [ ] Fix find_last_key() so that it iterates over obj in reverse.
+- [ ] Make invoke() workon objects instead of collections.
+- [ ] Mass function/alias renames and removals. See changes to CHANGELOG.rst for details.
+- [ ] Make test of invoke() compatible with Python 2.7.
+- [ ] Remove mapiter().
+- [ ] Remove deep_pluck().
+- [ ] Bulk rename of callback argument. See changes to CHANGELOG.rst for details.
+- [ ] Update docs for compatibility with version 4.
+- [ ] Update docstring versionadded/versionchanged annotations with v4.0.0.
+- [ ] Update docs for v4.0.0 release.
+- [ ] Make iteratee() treat integer argument as a path string.
+- [ ] Release v4.0.0.
+- [ ] Remove property_deep() in favor of property_().
+- [ ] Restore deep_pluck() as pluck().
+- [ ] Update docstrings.
+- [ ] Update changelog.
+- [ ] Release v4.0.1.
+- [ ] Correct changelog entry for v4.0.0 and deep_pluck.
+- [ ] Fix regression in intersection where calling intersection with a single argument should return the same argument value.
+- [ ] Update changelog.
+- [ ] Release v4.0.2.
+- [ ] add example for intersection of a single list
+- [ ] Use map_() with invoke() in invoke_map().
+- [ ] Restrict invokeable methods to attributes in invoke().
+- [ ] Don't allow attribute access for dict/list objects in get().
+- [ ] Update changelog.
+- [ ] Release v4.0.3.
+- [ ] Use standard replace instead of regex
+- [ ] Update AUTHORS and CHANGELOG.
+- [ ] Release v4.0.4.
+- [ ] Add properties() and make iteratee() support properties-style callback when tuple passed in.
+- [ ] Make from_pairs() example more meaningful.
+- [ ] Add additional iteratee tests.
+- [ ] Add replace_end() and replace_start().
+- [ ] Upgrade dev requirements.
+- [ ] Officially support for Python 3.6
+- [ ] Release v4.1.0.
+- [ ] Add more doctest examples for get().
+- [ ] Fix missing argument passing to matched function and add support for passing in a single list of pairs instead of just pairs as separate arguments.
+- [ ] Fix typo in docstring for versionchanged.
+- [ ] Fix test case.
+- [ ] Fix docstring test in cond().
+- [ ] Omit nested path (#104)
+- [ ] Make docstring width less than 80 chars.
+- [ ] Minor optimization in omit(). Add test case for omitting objects in lists.
+- [ ] Use helpers.iterator() in to_dict().
+- [ ] Support deep paths in pick()/pick_by().
+- [ ] Rename private helper variable in base_clone() for clarity.
+- [ ] Update changelog.
+- [ ] Release v4.2.0.
+- [ ] Ensure that to_path() always returns a list.
+- [ ] Release v4.2.1.
+- [ ] Wrap non-iterables with a list in to_list() and add "split_strings" option to control whether strings are wrapped in a list or split into characters in a list.
+- [ ] Remove extra spaces, make to_list test case a tuple, reformat docstring.
+- [ ] Add missing attribution to beck3905 in CHANGELOG..
+- [ ] Add efenka to AUTHORS.
+- [ ] Move to_list() to objects.py.
+- [ ] Move key_by() so it's definition is alphabetized with other functions.
+- [ ] Add nest() function.
+- [ ] Update CHANGELOG.
+- [ ] Release v4.3.0.
+- [ ] Fix bug in set_with() where callable "value" was called when being set.
+- [ ] Release v4.3.1
