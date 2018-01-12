@@ -13,140 +13,186 @@
 ### Client-Specific Equivalence Checking
 I Searched "Delorean" on Github. This yielded 1307 Python code results.
 I looked at the first 200 code results.
-Out of those 200 I ignored code results that were calling a different Delorean project, were the Delorean project, or had less than 5 stars on Github.
-This resulted in 9 projects that depend on Delorean.
-- https://github.com/RenegadeMaster/todoangularflask_aws
+Out of those 200 I ignored code results that were calling a different Delorean project, were the Delorean project (or a fork/copy), or had less than 5 stars on Github.
+This resulted in 9 projects that depend on Delorean, of those 9, the following actually used the libraries identified earlier (not for testing).
 - https://github.com/amicks/Speculator
 - https://github.com/numberoverzero/bloop
 - https://github.com/biicode/bii-server
-- https://github.com/DingGuodong/LinuxBashShellScriptForOps
-- https://github.com/Mondego/pyreco
-- https://github.com/kipe/pycron
 - https://github.com/mwaterfall/alfred-datetime-format-converter
 - https://github.com/myusuf3/courtside
 
 I then searched through each of the 9 projects to find clients for each of the 6 library functions we identified below (in progress).
 
+Note: should follow the clients of init further. They usually return the object.
+
+#### Speculator
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [x] \_\_init\_\_
+    -  [many inits, date_to_delorean, date_to_epoch, now_delorean, get_end_start_epochs](https://github.com/amicks/Speculator/blob/17ac7a1c0a2df8370e2820b98ff13af489b666b0/speculator/utils/date.py)
+- [ ] parse
+- [ ] end\_of\_day()
+- [ ] naive
+
+#### bloop
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [x] \_\_init\_\_
+    - [DateTime.dynamo_load, Timestamp.dynamo_load](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/bloop/ext/delorean.py) 
+    - [new_expiry](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/examples/mixins.py)
+- [ ] parse
+- [ ] end\_of\_day()
+- [ ] naive
+
+
+#### bii server
+[all here. Follow UtcDatetime to get more clients](https://github.com/biicode/bii-server/blob/d2d7f2f0e38ff5ffdf1918ddeb33d1f4b1b530b1/model/epoch/utc_datetime.py)
+- [ ] stops
+- [x] \_\_eq\_\_
+- [x] \_\_init\_\_
+- [ ] parse
+- [ ] end\_of\_day()
+- [x] naive
+
+#### alfred-datetime-format-converter
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [x] \_\_init\_\_
+    -  [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) returns a delorean object. We should follow this back for eqm end of day, and naive.
+- [x] parse
+    - [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) 
+- [ ] end\_of\_day()
+- [ ] naive
+
+#### courtside
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [ ] \_\_init\_\_
+- [x] parse
+    - [localize_datetime](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/game/templatetags/time_tags.py) 
+- [ ] end\_of\_day()
+- [x] naive
+    - [CleanGamesTask](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/register/tasks.py) 
+
 
 ## Commits
-Check mark indicates that the commit has been examined.
 Every sub-point is a description of a semantic change 
 to one library that preserves interfaces. Every sub-sub-point 
 is the name of a (unchanged) client that calls this changed 
 library
 
-- [x] ``upping version``
-- [x] ``adding pypy and pypy3``
-- [x] ``fixing tests and adding new build versions``
-- [x] ``adding 3.4 support and version bump``
-- [x] ``rule parameters weren't being passed, so stops function wasn't working properly.``
-- [x] [``Merge pull request #49 from xgilest/master``](https://github.com/myusuf3/delorean/commit/344ed62d440c2189c33a49c7fc7bd5fb32fea8e3)
+- ``upping version``
+- ``adding pypy and pypy3``
+- ``fixing tests and adding new build versions``
+- ``adding 3.4 support and version bump``
+- ``rule parameters weren't being passed, so stops function wasn't working properly.``
+- [``Merge pull request #49 from xgilest/master``](https://github.com/myusuf3/delorean/commit/344ed62d440c2189c33a49c7fc7bd5fb32fea8e3)
     - delorean/interface.py/stops
         - No clients inside of project
-- [x] ``bumping version``
-- [x] ``adding comma``
-- [x] ``Small test to check stops bug was resolved by my previous commit, not all rrule functionality is checked, though``
-- [x] ``Merge pull request #50 from xgilest/master``
-- [x] ``Point README to the docs instead of "below"``
-- [x] ``Merge pull request #55 from kermit666/patch-1``
-- [x] ``Implemented timedelta arithmetic.``
-- [x] ``Added documentation for timezone arithmetic.``
-- [x] ``Finished up date arithmetic to better mirror datetime's functionality. Added test_suite to setup.py for test running.``
-- [x] ``Updated documentation``
-- [x] ``Merge pull request #56 from josefdlange/master``
-- [x] ``testing naive truncating to the minute``
-- [x] ``updating pytz``
-- [x] ``updating pytz``
-- [x] ``fixing the dependencies``
-- [x] ``fixing requirements``
-- [x] ``bumping version``
-- [x] ``Added title heading to timedelta arithmetic section.``
-- [x] ``Merge pull request #58 from josefdlange/master``
-- [x] ``Move to use pip-tools to manaage requirements``
-- [x] ``Remove extra 'precedence' in quickstart docs``
-- [x] ``Removes weird link generated by Sphinx``
-- [x] ``Delorean objects are equal if they are UTC equal``
-- [x] ``Merge pull request #59 from mlew/52``
-- [x] ``Merge pull request #60 from mlew/51``
-- [x] ``Merge pull request #62 from mlew/61``
-- [x] ``adding functionality for start_of_day, and end_of_day``
-- [x] ``adding tests``
-- [x] [``Merge branch 'master' into pip-tools``](https://github.com/myusuf3/delorean/commit/c5b23b96093544bdd3f84f2a9f84efa3bff9fac6)
+- ``bumping version``
+- ``adding comma``
+- ``Small test to check stops bug was resolved by my previous commit, not all rrule functionality is checked, though``
+- ``Merge pull request #50 from xgilest/master``
+- ``Point README to the docs instead of "below"``
+- ``Merge pull request #55 from kermit666/patch-1``
+- ``Implemented timedelta arithmetic.``
+- ``Added documentation for timezone arithmetic.``
+- ``Finished up date arithmetic to better mirror datetime's functionality. Added test_suite to setup.py for test running.``
+- ``Updated documentation``
+- ``Merge pull request #56 from josefdlange/master``
+- ``testing naive truncating to the minute``
+- ``updating pytz``
+- ``updating pytz``
+- ``fixing the dependencies``
+- ``fixing requirements``
+- ``bumping version``
+- ``Added title heading to timedelta arithmetic section.``
+- ``Merge pull request #58 from josefdlange/master``
+- ``Move to use pip-tools to manaage requirements``
+- ``Remove extra 'precedence' in quickstart docs``
+- ``Removes weird link generated by Sphinx``
+- ``Delorean objects are equal if they are UTC equal``
+- ``Merge pull request #59 from mlew/52``
+- ``Merge pull request #60 from mlew/51``
+- ``Merge pull request #62 from mlew/61``
+- ``adding functionality for start_of_day, and end_of_day``
+- ``adding tests``
+- [``Merge branch 'master' into pip-tools``](https://github.com/myusuf3/delorean/commit/c5b23b96093544bdd3f84f2a9f84efa3bff9fac6)
     - Delorean.\_\_eq\_\_ changed to check that epochs are the same.
         - Hard to find clients for this.
-- [x] ``Added documentation for Delorean.__eq__``
-- [x] ``end_of_day should return 11pm, not 11am``
-- [x] ``Merge pull request #67 from mlew/66``
-- [x] ``Merge pull request #63 from mlew/61``
-- [x] ``Update __repr__ return value``
-- [x] ``Merge pull request #69 from mlew/64``
-- [x] ``Migrate Delorean to work with FixedOffset timezones``
-- [x] ``Cleanup code example in README.md``
-- [x] ``Add CHANGES.md``
-- [x] ``update requirements.txt``
-- [x] ``Bump version to 0.6.0``
-- [x] ``Remove unused utc variables``
-- [ ] [``Delorean.parse() understands dateutil.tz.tzlocal``](https://github.com/myusuf3/delorean/commit/679596a0ffe7ea72e605cc6b2bf765c036f588b6)
+- ``Added documentation for Delorean.__eq__``
+- ``end_of_day should return 11pm, not 11am``
+- ``Merge pull request #67 from mlew/66``
+- ``Merge pull request #63 from mlew/61``
+- ``Update __repr__ return value``
+- ``Merge pull request #69 from mlew/64``
+- ``Migrate Delorean to work with FixedOffset timezones``
+- ``Cleanup code example in README.md``
+- ``Add CHANGES.md``
+- ``update requirements.txt``
+- ``Bump version to 0.6.0``
+- ``Remove unused utc variables``
+- [``Delorean.parse() understands dateutil.tz.tzlocal``](https://github.com/myusuf3/delorean/commit/679596a0ffe7ea72e605cc6b2bf765c036f588b6)
     - dates.py/Delorean.\_\_init\_\_ added self.\_tzinfo = self.\_dt.tzinfo deeply nested in conditionals
         - No clients inside of project
     - delorean/interface.py\parse changes conditionals for when datetime object is offset and when it is local
         - No clients inside of project
-- [x] ``Add tzlocal as a dependency``
-- [x] ``Update documentation on Delorean properties``
-- [x] ``Update a bunch of the documentation``
-- [x] ``Update CHANGES.md``
-- [x] ``Merge pull request #71 from mlew/70``
-- [x] ``Documentation update``
-- [ ] ``Merge branch 'master' into pip-tools``
+- ``Add tzlocal as a dependency``
+- ``Update documentation on Delorean properties``
+- ``Update a bunch of the documentation``
+- ``Update CHANGES.md``
+- ``Merge pull request #71 from mlew/70``
+- ``Documentation update``
+- [``Merge branch 'master' into pip-tools``](https://github.com/myusuf3/delorean/commit/081c758045d6c3b56583d1f139d4bae4c7b9687f)
     - delorean/dates.py/end\_of\_day() (initially incorrectly used 12 hour clock)
         - No clients inside of project
-- [x] ``Merge branch 'pip-tools' into 40``
-- [x] ``Fix delorean.now() to return a local Delorean``
-- [x] ``Move a bunch of Delorean class methods to properties``
-- [x] ``Update requirements``
-- [x] ``Add sphinx to dev-requirements``
-- [x] ``Update docs target in Makefile``
-- [ ] [``Adding doctests``](https://github.com/myusuf3/delorean/commit/4755906335c825a32db8b65e971f3d3a8b966a8d)
+- ``Merge branch 'pip-tools' into 40``
+- ``Fix delorean.now() to return a local Delorean``
+- ``Move a bunch of Delorean class methods to properties``
+- ``Update requirements``
+- ``Add sphinx to dev-requirements``
+- ``Update docs target in Makefile``
+- [``Adding doctests``](https://github.com/myusuf3/delorean/commit/4755906335c825a32db8b65e971f3d3a8b966a8d)
     - delorean/dates.py/naive
         - No clients inside of project
-- [x] ``Add more documentation``
-- [x] ``Update dev-requirements``
-- [x] ``Last bit of new documentation for 0.6.0``
-- [x] ``Add humanize method to Delorean class``
-- [x] ``Add babel support``
-- [x] ``Add an overriding timezone parameter to delorean.parse``
-- [x] ``Update setup.py``
-- [x] ``README cleanup``
-- [x] ``fix for travis.ci``
-- [x] ``setup.py fix``
-- [x] ``Fix unit tests for case where get_localzone is in UTC``
-- [x] ``Python2.6 compatability``
-- [x] ``Some last minute cleanup``
-- [x] ``Updates to Changes.rst for 0.6.0 release.``
-- [x] ``Merge pull request #73 from mlew/0.6.0``
-- [x] ``Update requirements files``
-- [x] ``Update dependencies in setup.py``
-- [x] ``Call out breaking changes in the documentation``
-- [x] ``Fix quickstart docs``
-- [x] ``Merge pull request #78 from matiskay/fix-documentation``
-- [x] ``Added replace method on Delorean object``
-- [x] ``Added docs for the replace method``
-- [x] ``Updated tests``
-- [x] ``Added a few asserts on datetime``
-- [x] ``Add PyCharm dir to gitignore.``
-- [x] ``Use `naive` and `midnight` as properties in documentation. Closes myusuf3/delorean#88.``
-- [x] ``Delete empty philosophy.rst``
-- [x] ``Merge pull request #89 from ParthGandhi/fix-quickstart-docs``
-- [x] ``Include tests in release source tarball``
-- [x] ``Merge pull request #90 from EdwardBetts/patch-1``
-- [x] ``adding test for dayfirst False``
-- [x] ``Merge branch 'master' of github.com:myusuf3/delorean``
-- [x] ``Merge pull request #81 from masnun/master``
-- [x] ``adding python 3.5``
-- [x] ``Merge branch 'master' of github.com:myusuf3/delorean``
-- [x] ``Add most recent Python versions in Travis CI``
-- [x] ``Remove nightly from .travis.yml file``
-- [x] ``Merge pull request #98 from SylvainDe/master``
+- ``Add more documentation``
+- ``Update dev-requirements``
+- ``Last bit of new documentation for 0.6.0``
+- ``Add humanize method to Delorean class``
+- ``Add babel support``
+- ``Add an overriding timezone parameter to delorean.parse``
+- ``Update setup.py``
+- ``README cleanup``
+- ``fix for travis.ci``
+- ``setup.py fix``
+- ``Fix unit tests for case where get_localzone is in UTC``
+- ``Python2.6 compatability``
+- ``Some last minute cleanup``
+- ``Updates to Changes.rst for 0.6.0 release.``
+- ``Merge pull request #73 from mlew/0.6.0``
+- ``Update requirements files``
+- ``Update dependencies in setup.py``
+- ``Call out breaking changes in the documentation``
+- ``Fix quickstart docs``
+- ``Merge pull request #78 from matiskay/fix-documentation``
+- ``Added replace method on Delorean object``
+- ``Added docs for the replace method``
+- ``Updated tests``
+- ``Added a few asserts on datetime``
+- ``Add PyCharm dir to gitignore.``
+- ``Use `naive` and `midnight` as properties in documentation. Closes myusuf3/delorean#88.``
+- ``Delete empty philosophy.rst``
+- ``Merge pull request #89 from ParthGandhi/fix-quickstart-docs``
+- ``Include tests in release source tarball``
+- ``Merge pull request #90 from EdwardBetts/patch-1``
+- ``adding test for dayfirst False``
+- ``Merge branch 'master' of github.com:myusuf3/delorean``
+- ``Merge pull request #81 from masnun/master``
+- ``adding python 3.5``
+- ``Merge branch 'master' of github.com:myusuf3/delorean``
+- ``Add most recent Python versions in Travis CI``
+- ``Remove nightly from .travis.yml file``
+- ``Merge pull request #98 from SylvainDe/master``
 
 ## Notes
 - ``Added a few asserts on datetime`` adds asserts to the test\_replace function. This is technically a semantic change to a single function that doesn't modify signatures. But it will have no clients other than the test harness. Let's ignore tests.
