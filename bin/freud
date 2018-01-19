@@ -4,9 +4,8 @@ import os
 import sys
 import logging
 from argparse import ArgumentParser
-import time
 
-from freud import PATTERN, SOLVER, NOTCSE, prove_cse
+from freud.prove import PATTERN, SOLVER, NOTCSE, prove_cse
 
 def main():
     print("Client-Specific Equivalence Checking")
@@ -57,11 +56,7 @@ def main():
     file1 = os.path.abspath(options.file1)
     file2 = os.path.abspath(options.file2)
 
-    starttime_wall = time.time()
-
-    res, ctr = prove_cse(options.strategy, file1, file2, options.client, options.library)
-
-    endtime_wall = time.time()
+    res, ctr, exec_time = prove_cse(options.strategy, file1, file2, options.client, options.library)
 
     if res == PATTERN:
         print("CSE Proven by Pattern!")
@@ -72,7 +67,7 @@ def main():
     else:
         print(res, ctr)
     
-    print("Execution time: {0:.3f} seconds".format(endtime_wall - starttime_wall))
+    print("Execution time: {0:.3f} seconds".format(exec_time))
 
 if __name__ == "__main__":
     main()
