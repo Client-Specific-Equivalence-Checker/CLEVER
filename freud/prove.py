@@ -31,7 +31,7 @@ def prove_cse(startegy, file1, file2, client, library):
         upgr_summary = upgr_struct.to_summary(unknown)
 
         assertion = EqualsOrIff(orig_summary, upgr_summary)
-        model = get_model(Not(assertion))
+        model = get_model(Not(assertion), "z3")
         endtime_wall = time.time()
         exec_time = endtime_wall-starttime_wall
         print("Attempting to Prove:\n%s" % assertion)
