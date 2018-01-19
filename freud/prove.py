@@ -30,6 +30,11 @@ def prove_cse(startegy, file1, file2, client, library):
         upgr_struct = upgr_engine.explore()
         upgr_summary = upgr_struct.to_summary(unknown)
 
+        if orig_summary == upgr_summary:
+            endtime_wall = time.time()
+            exec_time = endtime_wall-starttime_wall
+            return PATTERN, None, exec_time
+
         assertion = EqualsOrIff(orig_summary, upgr_summary)
         model = get_model(Not(assertion), "z3")
         endtime_wall = time.time()
