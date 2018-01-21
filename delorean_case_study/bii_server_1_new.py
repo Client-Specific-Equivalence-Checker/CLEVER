@@ -1,56 +1,5 @@
-###########################
-# INFO:
-# '##' means original code commented out
-###########################
-UTC = 0
-PST = 1
-PST8PDT = 2
-ALL_TIMEZONES = [UTC, PST, PST8PDT]
-
-SECOND = 1
-
-###########################
-# MODELING ENVIRONEMNT
-###########################
-class datetime(object):
-    def __init__(self, epoch, tz=0):
-        self.epoch = epoch #seconds since start of time
-        self.tzinfo = tz
-    
-    @staticmethod
-    def utcnow():
-        return datetime(0)
-
-    def astimezone(self, tzinfo):
-        return datetime(0, tzinfo.tzinfo)
-
-class tzinfo(object):
-    def __init__(self, tz):
-        self.tzinfo = tz
-
-    def localize(self, datetime):
-        datetime.tz = self.tzinfo
-        return datetime
-
-    def normalize(self, datetime):
-        datetime.tz = 0
-        return datetime
-
-class tzoffset(object):
-    pass
-
-class pytz(object):
-    @staticmethod
-    def timezone(tz):
-        return tzinfo(tz)
-
-    @staticmethod
-    def FixedOffset(offset):
-        return tzinfo(0)
-
-    @staticmethod
-    def utc():
-        return tzinfo(0)
+from delorean_case_study.bii_server_1_scaffolding import *
+from delorean_case_study.environment import *
 
 ###########################
 # Wrapping Functions
@@ -61,7 +10,7 @@ def bii_server_1(epoch, tz):
     return utcdt._delorean.epoch # this is how delorean checks if two delorean objects are equal. 
 
 ########################### 
-# BII_SERVER CODE
+# BII_SERVER CODE (CLIENT)
 # https://github.com/biicode/bii-server/blob/d2d7f2f0e38ff5ffdf1918ddeb33d1f4b1b530b1/model/epoch/utc_datetime.py
 ############################
 class UtcDatetime(object):
@@ -95,65 +44,8 @@ class UtcDatetime(object):
 
 
 ############################################### 
-# DELOREAN CODE
+# DELOREAN CODE (LIBRARY)
 ###############################################
-from casestudies.delorean.exceptions import DeloreanInvalidTimezone
-
-def get_total_second(td):
-    """
-    This method takes a timedelta and return the number of seconds it
-    represents with the resolution of 10**6
-    """
-    return (td.microseconds + (td.seconds + td.days * 24 * 3600) * 1e6) / 1e6
-
-def is_datetime_naive(dt):
-    """
-    This method returns true if the datetime is naive else returns false
-    """
-    if dt.tzinfo is None:
-        return True
-    else:
-        return False
-
-def is_datetime_instance(dt):
-    if dt is None:
-        return
-    if not isinstance(dt, datetime):
-        raise ValueError('Please provide a datetime instance to Delorean')
-
-def datetime_timezone(tz):
-    """
-    This method given a timezone returns a localized datetime object.
-    """
-    utc_datetime_naive = datetime.utcnow()
-    # return a localized datetime to UTC
-    utc_localized_datetime = localize(utc_datetime_naive, 'UTC')
-    # normalize the datetime to given timezone
-    normalized_datetime = normalize(utc_localized_datetime, tz)
-    return normalized_datetime
-
-def localize(dt, tz):
-    """
-    Given a naive datetime object this method will return a localized
-    datetime object
-    """
-    if not isinstance(tz, tzinfo):
-        tz = pytz.timezone(tz)
-
-    return tz.localize(dt)
-
-def normalize(dt, tz):
-    """
-    Given a object with a timezone return a datetime object
-    normalized to the proper timezone.
-    This means take the give localized datetime and returns the
-    datetime normalized to match the specificed timezone.
-    """
-    if not isinstance(tz, tzinfo):
-        tz = pytz.timezone(tz)
-    dt = tz.normalize(dt)
-    return dt
-
 class Delorean(object):
     """
     The class `Delorean <Delorean>` object. This method accepts naive
@@ -183,11 +75,13 @@ class Delorean(object):
                     else:
                         self._tzinfo = pytz.timezone(timezone)
                     self._dt = localize(datetime, self._tzinfo)
+                    self._tzinfo = self._dt.tzinfo #CHANGED HERE!!! ADDED LINE
                 else:
                     # TODO(mlew, 2015-08-09):
                     # Should we really throw an error here, or should this 
                     # default to UTC?)
-                    raise DeloreanInvalidTimezone('Provide a valid timezone')
+                    # raise DeloreanInvalidTimezone('Provide a valid timezone')
+                    raise ValueError('Provide a valid timezone')
             else:
                 self._tzinfo = datetime.tzinfo
                 self._dt = datetime
