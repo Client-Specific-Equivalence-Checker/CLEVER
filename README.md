@@ -5,8 +5,8 @@ Client-Specific Equivalence Checking with PyExSMT
 ## Installing
 
 ```bash
-# Install PySMT >= 0.7.1dev
-git clone https://github.com/pysmt/pysmt.git
+# Install this fork of PySMT >= 0.7.1dev
+git clone https://github.com/FedericoAureliano/pysmt.git
 cd pysmt
 sudo python3 setup.py install
 cd ..
