@@ -25,7 +25,7 @@ class Datetime(object):
     
     @staticmethod
     def utcnow():
-        return Datetime(0)
+        return Datetime(2018,1,22,4,27,34, UTC)
 
     def astimezone(self, tz):
         return Datetime(self.year, self.month, self.day, self.hour, self.minute, self.second, tz)
@@ -45,11 +45,11 @@ class Tzinfo(object):
         self.tzinfo = tz
 
     def localize(self, dt):
-        dt.tz = self.tzinfo
+        dt.tz = self
         return dt
 
     def normalize(self, dt):
-        dt.tz = 0
+        dt.tz = self
         return dt
 
 class Tzoffset(object):
@@ -62,11 +62,11 @@ class Pytz(object):
 
     @staticmethod
     def FixedOffset(offset):
-        return Tzinfo(0)
+        return Tzinfo(UTC+offset)
 
     @staticmethod
     def utc():
-        return Tzinfo(0)
+        return Tzinfo(UTC)
 
 ###############################################
 # DELOREAN CODE

@@ -49,26 +49,8 @@ def shift_epoch(delorean, direction, unit, count):
     Returns:
         Int epoch in UTC from a shifted Delorean
     """
-    return int(delorean._shift_date(direction, unit, count).epoch)
-
-def generate_epochs(delorean, direction, unit, count):
-    """ Generates epochs from a shifted Delorean instance
-    
-    Args:
-        delorean: Delorean datetime instance to shift from.
-        direction: String to shift time forwards or backwards.
-            Valid values: 'last', 'next'.
-        unit: String of time period unit for count argument.
-            What unit in direction should be shifted?
-            Valid values: 'hour', 'day', 'week', 'month', 'year'.
-        count: Int of units.
-            How many units to shift in direction?
-
-    Returns:
-        Generator of count int epochs in UTC from a shifted Delorean
-    """
-    for shift in range(count):
-        yield int(delorean._shift_date(direction, unit, shift).epoch)
+    # return int(delorean._shift_date(direction, unit, count).epoch)
+    return delorean._shift_date(direction, unit, count).epoch
 
 def get_end_start_epochs(year, month, day, direction, unit, count):
     """ Gets epoch from a start date and epoch from a shifted date
@@ -100,6 +82,7 @@ def get_end_start_epochs(year, month, day, direction, unit, count):
         count += 1 # Get another date because market is still open
         initial_delorean = now_delorean()
     
-    initial_epoch = int(initial_delorean.epoch)
+    # initial_epoch = int(initial_delorean.epoch)
+    initial_epoch = initial_delorean.epoch
     shifted_epoch = shift_epoch(initial_delorean, direction, unit, count)
     return { 'initial': initial_epoch, 'shifted': shifted_epoch }

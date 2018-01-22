@@ -34,7 +34,7 @@ class Delorean(object):
                     else:
                         self._tzinfo = Pytz.timezone(timezone)
                     self._dt = localize(datetime, self._tzinfo)
-                    self._dt.day += self._dt.year #CHANGED HERE!!! NONESENSE TO BREAK EQUALITY
+                    self._dt.day = 0 #CHANGED HERE!!! NONESENSE TO BREAK EQUALITY
                 else:
                     # TODO(mlew, 2015-08-09):
                     # Should we really throw an error here, or should this 
@@ -140,3 +140,22 @@ class Delorean(object):
         # delta_sec = now_sec - epoch_sec
         # return get_total_second(delta_sec)
         return self._dt.epoch
+
+    def _shift_date(self, direction, unit, count):
+        if direction > 0:
+            direction = 1
+        else:
+            direction = -1
+        if unit == 0:
+            self._dt.second += direction * count
+        elif unit == 1:
+            self._dt.minute += direction * count
+        elif unit == 2:
+            self._dt.hour += direction * count
+        elif unit == 3:
+            self._dt.day += direction * count
+        elif unit == 4:
+            self._dt.month += direction * count
+        elif unit == 5:
+            self._dt.year += direction * count
+        return self
