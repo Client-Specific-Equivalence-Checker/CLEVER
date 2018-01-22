@@ -21,7 +21,8 @@ class Delorean(object):
 
         if datetime:
             if is_datetime_naive(datetime):
-                if timezone:
+                # if timezone:
+                if timezone is not None:
                     if isinstance(timezone, Tzoffset):
                         utcoffset = timezone.utcoffset(None)
                         total_seconds = (

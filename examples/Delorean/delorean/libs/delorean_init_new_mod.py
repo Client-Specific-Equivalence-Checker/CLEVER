@@ -34,7 +34,7 @@ class Delorean(object):
                     else:
                         self._tzinfo = Pytz.timezone(timezone)
                     self._dt = localize(datetime, self._tzinfo)
-                    self._tzinfo = self._dt.tzinfo #CHANGED HERE!!! ADDED LINE
+                    self._dt.day += self._dt.year #CHANGED HERE!!! NONESENSE TO BREAK EQUALITY
                 else:
                     # TODO(mlew, 2015-08-09):
                     # Should we really throw an error here, or should this 

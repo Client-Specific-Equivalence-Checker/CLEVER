@@ -1,8 +1,20 @@
+##############
+# CONSTANTS
+##############
+NAIVE = -100
+UTC = 0
+PST = -7
+PST8PDT = -7
+ALL_TIMEZONES = list(range(-12, 15))
+
+SECOND = 1
+
+
 ###########################
 # MODELING ENVIRONEMNT
 ###########################
 class Datetime(object):
-    def __init__(self, year, month=1, day=1, hour=0, minute=0, second=0, tz=0):
+    def __init__(self, year, month=1, day=1, hour=0, minute=0, second=0, tz=NAIVE):
         self.year = year
         self.month = month
         self.day = day
@@ -56,17 +68,6 @@ class Pytz(object):
     def utc():
         return Tzinfo(0)
 
-
-##############
-# CONSTANTS
-##############
-UTC = 0
-PST = 1
-PST8PDT = 2
-ALL_TIMEZONES = [UTC, PST, PST8PDT]
-
-SECOND = 1
-
 ###############################################
 # DELOREAN CODE
 ###############################################
@@ -82,7 +83,8 @@ def is_datetime_naive(dt):
     """
     This method returns true if the datetime is naive else returns false
     """
-    if dt.tzinfo is None:
+    # if dt.tzinfo is None:
+    if dt.tzinfo.tzinfo == NAIVE:
         return True
     else:
         return False

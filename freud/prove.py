@@ -33,6 +33,7 @@ def prove_cse(startegy, file1, file2, client, library):
         if orig_summary == upgr_summary:
             endtime_wall = time.time()
             exec_time = endtime_wall-starttime_wall
+            print("Summary:\n%s" % orig_summary)
             return PATTERN, None, exec_time
 
         assertion = EqualsOrIff(orig_summary, upgr_summary)
