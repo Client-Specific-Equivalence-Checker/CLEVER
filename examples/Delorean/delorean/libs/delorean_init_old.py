@@ -1,5 +1,4 @@
-from delorean_case_study.bii_server_1_scaffolding import *
-from delorean_case_study.environment import *
+from delorean.environments.datetime_1 import *
 
 ############################################### 
 # DELOREAN CODE (LIBRARY)
@@ -23,18 +22,17 @@ class Delorean(object):
         if datetime:
             if is_datetime_naive(datetime):
                 if timezone:
-                    if isinstance(timezone, tzoffset):
+                    if isinstance(timezone, Tzoffset):
                         utcoffset = timezone.utcoffset(None)
                         total_seconds = (
                             (utcoffset.microseconds + (
                                 utcoffset.seconds + utcoffset.days * 24 * 3600) * 10 ** 6) / 10 ** 6)
-                        self._tzinfo = pytz.FixedOffset(total_seconds / 60)
-                    elif isinstance(timezone, tzinfo):
+                        self._tzinfo = Pytz.FixedOffset(total_seconds / 60)
+                    elif isinstance(timezone, Tzinfo):
                         self._tzinfo = timezone
                     else:
-                        self._tzinfo = pytz.timezone(timezone)
+                        self._tzinfo = Pytz.timezone(timezone)
                     self._dt = localize(datetime, self._tzinfo)
-                    self._tzinfo = self._dt.tzinfo #CHANGED HERE!!! ADDED LINE
                 else:
                     # TODO(mlew, 2015-08-09):
                     # Should we really throw an error here, or should this 
@@ -46,17 +44,17 @@ class Delorean(object):
                 self._dt = datetime
         else:
             if timezone:
-                if isinstance(timezone, tzoffset):
-                    self._tzinfo = pytz.FixedOffset(timezone.utcoffset(None).total_seconds() / 60)
-                elif isinstance(timezone, tzinfo):
+                if isinstance(timezone, Tzoffset):
+                    self._tzinfo = Pytz.FixedOffset(timezone.utcoffset(None).total_seconds() / 60)
+                elif isinstance(timezone, Tzinfo):
                     self._tzinfo = timezone
                 else:
-                    self._tzinfo = pytz.timezone(timezone)
+                    self._tzinfo = Pytz.timezone(timezone)
 
                 self._dt = datetime_timezone(self._tzinfo)
                 self._tzinfo = self._dt.tzinfo
             else:
-                self._tzinfo = pytz.utc
+                self._tzinfo = Pytz.utc
                 self._dt = datetime_timezone('UTC')
 
     def shift(self, timezone):
@@ -72,8 +70,8 @@ class Delorean(object):
             Delorean(datetime=datetime.datetime(2015, 1, 1, 8, 0), timezone='UTC')
         """
         try:
-            self._tzinfo = pytz.timezone(timezone)
-        ## except pytz.UnknownTimeZoneError:
+            self._tzinfo = Pytz.timezone(timezone)
+        ## except Pytz.UnknownTimeZoneError:
         except Exception:
             raise DeloreanInvalidTimezone('Provide a valid timezone')
         self._dt = self._tzinfo.normalize(self._dt.astimezone(self._tzinfo))
@@ -135,8 +133,8 @@ class Delorean(object):
             1420099200.0
 
         """
-        # epoch_sec = pytz.utc.localize(datetime.utcfromtimestamp(0))
-        # now_sec = pytz.utc.normalize(self._dt)
+        # epoch_sec = Pytz.utc.localize(datetime.utcfromtimestamp(0))
+        # now_sec = Pytz.utc.normalize(self._dt)
         # delta_sec = now_sec - epoch_sec
         # return get_total_second(delta_sec)
         return self._dt.epoch

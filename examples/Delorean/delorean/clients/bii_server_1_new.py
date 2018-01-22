@@ -1,14 +1,5 @@
-from delorean_case_study.delorean_init_old import *
-from delorean_case_study.bii_server_1_scaffolding import *
-from delorean_case_study.environment import *
-
-###########################
-# Wrapping Functions
-###########################
-def bii_server_1(epoch, tz):
-    dt = datetime(epoch)
-    utcdt = UtcDatetime(dt, tz)
-    return utcdt._delorean.epoch # this is how delorean checks if two delorean objects are equal. 
+from delorean.libs.delorean_init_new import *
+from delorean.environments.datetime_1 import *
 
 ########################### 
 # BII_SERVER CODE (CLIENT)

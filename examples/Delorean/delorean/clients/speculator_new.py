@@ -1,5 +1,5 @@
-from delorean_case_study.environment import *
-from delorean_case_study.delorean_init_new import *
+from delorean.environments.datetime_1 import *
+from delorean.libs.delorean_init_new import *
 
 def date_to_delorean(year, month, day):
     """ Converts date arguments to a Delorean instance in UTC
@@ -12,7 +12,8 @@ def date_to_delorean(year, month, day):
     Returns:
         Delorean instance in UTC of date.
     """
-    return Delorean(datetime=datetime(year, month, day), timezone='UTC')
+    # return Delorean(datetime=dt(year, month, day), timezone='UTC')
+    return Delorean(datetime=Datetime(year, month, day), timezone=UTC)
 
 def date_to_epoch(year, month, day):
     """ Converts a date to epoch in UTC
@@ -29,7 +30,8 @@ def date_to_epoch(year, month, day):
 
 def now_delorean():
     """ Returns the current time as a Delorean instance in UTC """
-    return Delorean(timezone='UTC')
+    # return Delorean(timezone='UTC')
+    return Delorean(timezone=UTC)
 
 def shift_epoch(delorean, direction, unit, count):
     """ Gets the resulting epoch after a time shift of a Delorean
