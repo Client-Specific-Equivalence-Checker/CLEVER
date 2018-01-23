@@ -78,155 +78,12 @@ Went on Github, searched topic "python3", ordered by most stars. These are the c
     - "Cast macOS and Linux Audio/Video to your Google Cast and Sonos Devices"
     - Reasoning about videos may be difficult
 
-## Results
-- bii\_1\_old Vs. bii\_1\_new
-    - Client is init for UtcDatetime
-    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
-        - Change to Delorean init (added line deep in conditionals)
-    - Modeled environment in delorean/environments/datetime_1.py
-    - Changed string reasoning to int reasoning
-        - "UTC" becomes UTC constant (=0)
-        - if timezone becomes if timezone is not None
-            - timezone == 0 would go down wrong branch
-    - Used flag in wrapper for possibility of leaving tz parameter empty
-    - Wrapper returns epoch, which is how Delorean objects are checked for equality
-        - Client holds this Delorean object
-    - Proven CSE by pattern in 0.062 seconds
-        - Change does not affect functional behavior when comparing by epoch (seconds from start of time)
-- bii\_1\_old Vs. bii\_1\_new_mod
-    - Sanity check: introduce equivalence breaking change (set day=0)
-    - Counterexample found in 0.066 seconds
-- bii\_1\_old Vs. bii\_1\_new_error
-    - bii\_1\_new_error has original "if timezone" (see above)
-    - Counterexample found in 0.072 seconds
-- spec\_1\_old Vs spec\_1\_new
-    - Client is date\_to\_delorean
-    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
-        - Change to Delorean init (added line deep in conditionals)
-    - Modeled environment in delorean/environments/datetime_1.py    
-    - Changed string reasoning to int reasoning
-        - "UTC" becomes UTC constant (=0)
-        - if timezone becomes if timezone is not None
-            - timezone == 0 would go down wrong branch
-    - Wrapper returns epoch, which is how Delorean objects are checked for equality
-        - Client function returns Delorean object
-    - Proven CSE by pattern in 0.028 seconds
-        - Change is not exercised since object is always created in UTC timezone.
-- spec\_1\_old Vs spec\_1\_new_mod
-    - Sanity check: introduce equivalence breaking change (set day=0)
-    - Counterexample found in 0.030 seconds
-- spec\_1\_old Vs spec\_1\_new_error
-    - spec\_1\_new_error has original "if timezone" (see above)
-    - Counterexample found in 0.029 seconds
-- spec\_2\_old Vs spec\_2\_new
-    - Client is get\_end\_start\_epochs
-    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
-        - Change to Delorean init (added line deep in conditionals)
-    - Modeled environment in delorean/environments/datetime_1.py
-    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
-    - Changed string reasoning to int reasoning
-        - "UTC" becomes UTC constant (=0)
-        - if timezone becomes if timezone is not None
-            - timezone == 0 would go down wrong branch
-    - Wrapper returns difference between two epochs instead of the two epochs
-    - CSE Proven by Pattern! Execution time: 2.383 seconds.
-- spec\_2\_old Vs spec\_2\_new_mod
-    - Sanity check from previous examples but this one should actually still be CSE
-    - Proven by assertion! 2.394 seconds
-- spec\_2\_old Vs spec\_2\_new_error
-    - spec\_2\_new_error has original "if timezone" (see above)
-    - Counterexample found in 1.308 seconds
-- spec\_2\_alt\_old Vs spec\_2\_alt\_new
-    - Client is get\_end\_start\_epochs
-    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
-        - Change to Delorean init (added line deep in conditionals)
-    - Modeled environment in delorean/environments/datetime_1.py
-    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
-    - Changed string reasoning to int reasoning
-        - "UTC" becomes UTC constant (=0)
-        - if timezone becomes if timezone is not None
-            - timezone == 0 would go down wrong branch
-    - Wrapper returns shifted epoch
-    - CSE Proven by Pattern! Execution time: 2.179 seconds
-- spec\_2\_alt\_old Vs spec\_2\_alt\_new_mod
-    - Sanity check: introduce equivalence breaking change (set day=0)
-    - Counterexample found in 2.271 seconds
-- spec\_2\_alt\_old Vs spec\_2\_alt\_new_error
-    - spec\_2\_alt\_new_error has original "if timezone" (see above)
-    - Counterexample found in 1.347 seconds
-
-### General Stats
-- 5/100 commits contained semantic changes to a function that did not modify signature.
-    - This excludes changes to tests, and one big batch interface change whose individual components could have been chosen (see notes).
-- 6 libraries were identified (1 commit contained 2 candidate libraries)
-- 0 clients were found inside of project for these 6 libraries.
-    - Delorean is really meant to be a library
-- There were a lot of duplicate commits, and most commits were changes to documentation.
-
-### Client-Specific Equivalence Checking
-I Searched "Delorean" on Github. This yielded 1307 Python code results.
-I looked at the first 200 code results.
-Out of those 200 I ignored code results that were calling a different Delorean project, were the Delorean project (or a fork/copy), or had less than 5 stars on Github.
-This resulted in 9 projects that depend on Delorean, of those 9, the following actually used the libraries identified earlier (not for testing).
-- https://github.com/amicks/Speculator
-- https://github.com/numberoverzero/bloop
-- https://github.com/biicode/bii-server
-- https://github.com/mwaterfall/alfred-datetime-format-converter
-- https://github.com/myusuf3/courtside
-
-I then searched through each of the 9 projects to find clients for each of the 6 library functions we identified below (in progress).
-
-Note: should follow the clients of init further. They usually return the object.
-
-#### Speculator
-- [ ] stops
-- [ ] \_\_eq\_\_
-- [x] \_\_init\_\_
-    -  [many inits, date_to_delorean, date_to_epoch, now_delorean, get_end_start_epochs](https://github.com/amicks/Speculator/blob/17ac7a1c0a2df8370e2820b98ff13af489b666b0/speculator/utils/date.py)
-- [ ] parse
-- [ ] end\_of\_day()
-- [ ] naive
-
-#### bloop
-- [ ] stops
-- [ ] \_\_eq\_\_
-- [x] \_\_init\_\_
-    - [DateTime.dynamo_load, Timestamp.dynamo_load](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/bloop/ext/delorean.py) 
-    - [new_expiry](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/examples/mixins.py)
-- [ ] parse
-- [ ] end\_of\_day()
-- [ ] naive
-
-
-#### bii server
-[all here. Follow UtcDatetime to get more clients](https://github.com/biicode/bii-server/blob/d2d7f2f0e38ff5ffdf1918ddeb33d1f4b1b530b1/model/epoch/utc_datetime.py)
-- [ ] stops
-- [x] \_\_eq\_\_
-- [x] \_\_init\_\_
-- [ ] parse
-- [ ] end\_of\_day()
-- [x] naive
-
-#### alfred-datetime-format-converter
-- [ ] stops
-- [ ] \_\_eq\_\_
-- [x] \_\_init\_\_
-    -  [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) returns a delorean object. We should follow this back for eqm end of day, and naive.
-- [x] parse
-    - [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) 
-- [ ] end\_of\_day()
-- [ ] naive
-
-#### courtside
-- [ ] stops
-- [ ] \_\_eq\_\_
-- [ ] \_\_init\_\_
-- [x] parse
-    - [localize_datetime](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/game/templatetags/time_tags.py) 
-- [ ] end\_of\_day()
-- [x] naive
-    - [CleanGamesTask](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/register/tasks.py) 
-
+Raking of priority (hopefully can get to all, but start with easiest)
+- Delorean
+- Pendulum 
+- Scapy
+- flask-base
+- Box
 
 ## Commits
 Every sub-point is a description of a semantic change 
@@ -347,7 +204,7 @@ library
 - ``Remove nightly from .travis.yml file``
 - ``Merge pull request #98 from SylvainDe/master``
 
-## Notes
+### Notes
 - ``Added a few asserts on datetime`` adds asserts to the test\_replace function. This is technically a semantic change to a single function that doesn't modify signatures. But it will have no clients other than the test harness. Let's ignore tests.
 -  ``Add an overriding timezone parameter to delorean.parse`` delorean/interface.py/parse changes signature but by adding an argument with a default parameter. It's not a very interesting change anyway.
 -  ``Remove unused utc variables`` in a test. 
@@ -366,3 +223,158 @@ library
     - same as ``Merge branch 'master' into pip-tools`` 
 - ``Merge pull request #67 from mlew/66``
     - same as ``Merge branch 'master' into pip-tools`` 
+
+
+## Client Search
+I Searched "Delorean" on Github. This yielded 1307 Python code results.
+I looked at the first 200 code results.
+Out of those 200 I ignored code results that were calling a different Delorean project, were the Delorean project (or a fork/copy), or had less than 5 stars on Github.
+This resulted in 9 projects that depend on Delorean, of those 9, the following actually used the libraries identified earlier (not for testing).
+- https://github.com/amicks/Speculator
+- https://github.com/numberoverzero/bloop
+- https://github.com/biicode/bii-server
+- https://github.com/mwaterfall/alfred-datetime-format-converter
+- https://github.com/myusuf3/courtside
+
+I then searched through each of the 9 projects to find clients for each of the 6 library functions we identified below (in progress).
+
+Note: should follow the clients of init further. They usually return the object.
+
+#### Speculator
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [x] \_\_init\_\_
+    -  [many inits, date_to_delorean, date_to_epoch, now_delorean, get_end_start_epochs](https://github.com/amicks/Speculator/blob/17ac7a1c0a2df8370e2820b98ff13af489b666b0/speculator/utils/date.py)
+- [ ] parse
+- [ ] end\_of\_day()
+- [ ] naive
+
+#### bloop
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [x] \_\_init\_\_
+    - [DateTime.dynamo_load, Timestamp.dynamo_load](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/bloop/ext/delorean.py) 
+    - [new_expiry](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/examples/mixins.py)
+- [ ] parse
+- [ ] end\_of\_day()
+- [ ] naive
+
+
+#### bii server
+[all here. Follow UtcDatetime to get more clients](https://github.com/biicode/bii-server/blob/d2d7f2f0e38ff5ffdf1918ddeb33d1f4b1b530b1/model/epoch/utc_datetime.py)
+- [ ] stops
+- [x] \_\_eq\_\_
+- [x] \_\_init\_\_
+- [ ] parse
+- [ ] end\_of\_day()
+- [x] naive
+
+#### alfred-datetime-format-converter
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [x] \_\_init\_\_
+    -  [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) returns a delorean object. We should follow this back for eqm end of day, and naive.
+- [x] parse
+    - [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) 
+- [ ] end\_of\_day()
+- [ ] naive
+
+#### courtside
+- [ ] stops
+- [ ] \_\_eq\_\_
+- [ ] \_\_init\_\_
+- [x] parse
+    - [localize_datetime](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/game/templatetags/time_tags.py) 
+- [ ] end\_of\_day()
+- [x] naive
+    - [CleanGamesTask](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/register/tasks.py) 
+
+
+## Results
+- 5/100 commits contained semantic changes to a function that did not modify signature.
+    - This excludes changes to tests, and one big batch interface change whose individual components could have been chosen (see notes).
+- 6 libraries were identified (1 commit contained 2 candidate libraries)
+- 0 clients were found inside of project for these 6 libraries.
+    - Delorean is really meant to be a library
+- There were a lot of duplicate commits, and most commits were changes to documentation.
+- So far I have checked 12 client-library pairs (some are sanity checks, others variations of modeling choices)
+    - CSE by pattern: 4
+    - CSE by assertion 1: 
+    - Not-CSE: 7
+
+### Case by Case
+- bii\_1\_old Vs. bii\_1\_new
+    - Client is init for UtcDatetime
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Used flag in wrapper for possibility of leaving tz parameter empty
+    - Wrapper returns epoch, which is how Delorean objects are checked for equality
+        - Client holds this Delorean object
+    - Proven CSE by pattern in 0.062 seconds
+        - Change does not affect functional behavior when comparing by epoch (seconds from start of time)
+- bii\_1\_old Vs. bii\_1\_new_mod
+    - Sanity check: introduce equivalence breaking change (set day=0)
+    - Counterexample found in 0.066 seconds
+- bii\_1\_old Vs. bii\_1\_new_error
+    - bii\_1\_new_error has original "if timezone" (see above)
+    - Counterexample found in 0.072 seconds
+- spec\_1\_old Vs spec\_1\_new
+    - Client is date\_to\_delorean
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py    
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns epoch, which is how Delorean objects are checked for equality
+        - Client function returns Delorean object
+    - Proven CSE by pattern in 0.028 seconds
+        - Change is not exercised since object is always created in UTC timezone.
+- spec\_1\_old Vs spec\_1\_new_mod
+    - Sanity check: introduce equivalence breaking change (set day=0)
+    - Counterexample found in 0.030 seconds
+- spec\_1\_old Vs spec\_1\_new_error
+    - spec\_1\_new_error has original "if timezone" (see above)
+    - Counterexample found in 0.029 seconds
+- spec\_2\_old Vs spec\_2\_new
+    - Client is get\_end\_start\_epochs
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns difference between two epochs instead of the two epochs
+    - CSE Proven by Pattern! Execution time: 2.383 seconds.
+- spec\_2\_old Vs spec\_2\_new_mod
+    - Sanity check from previous examples but this one should actually still be CSE
+    - Proven by assertion! 2.394 seconds
+- spec\_2\_old Vs spec\_2\_new_error
+    - spec\_2\_new_error has original "if timezone" (see above)
+    - Counterexample found in 1.308 seconds
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new
+    - Client is get\_end\_start\_epochs
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns shifted epoch
+    - CSE Proven by Pattern! Execution time: 2.179 seconds
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new_mod
+    - Sanity check: introduce equivalence breaking change (set day=0)
+    - Counterexample found in 2.271 seconds
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new_error
+    - spec\_2\_alt\_new_error has original "if timezone" (see above)
+    - Counterexample found in 1.347 seconds
