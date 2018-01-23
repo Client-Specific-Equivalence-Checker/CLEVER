@@ -123,6 +123,7 @@ Went on Github, searched topic "python3", ordered by most stars. These are the c
     - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
         - Change to Delorean init (added line deep in conditionals)
     - Modeled environment in delorean/environments/datetime_1.py
+    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
     - Changed string reasoning to int reasoning
         - "UTC" becomes UTC constant (=0)
         - if timezone becomes if timezone is not None
@@ -140,6 +141,7 @@ Went on Github, searched topic "python3", ordered by most stars. These are the c
     - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
         - Change to Delorean init (added line deep in conditionals)
     - Modeled environment in delorean/environments/datetime_1.py
+    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
     - Changed string reasoning to int reasoning
         - "UTC" becomes UTC constant (=0)
         - if timezone becomes if timezone is not None
