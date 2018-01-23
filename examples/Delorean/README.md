@@ -1,6 +1,157 @@
 # [Delorean](https://github.com/myusuf3/delorean) Case Study : 100 Most Recent Commits
 
+## Why Delorean?
+Went on Github, searched topic "python3", ordered by most stars. These are the contents of the first page of results.
+- https://github.com/celery/celery
+    - parallel/asynchronous, PyExSMT can't handle
+- https://github.com/zulip/zulip
+    - heavy on js, html, css, etc. 
+    - heavy on string reasoning
+    - PyExSMT can't handle
+- https://github.com/aws/chalice
+    - interface with Amazon Web Services
+    - Does source code analysis and uses many complicated data-structures that PyExSMT won't directly handle
+- https://github.com/xchaoinfo/fuck-login
+    - I can't read it, and there's a curse word in the name.
+- https://github.com/OmkarPathak/pygorithm
+    - "Purely for educational purposes"
+    - Looking for real world software
+- https://github.com/davidhalter/jedi
+    - "Awesome autocompletion and static analysis library for python"
+    - string and program analysis. Would need to do too much work on PyExSMT
+- https://github.com/cloudtools/troposphere
+    - Very similar to chalice.
+- https://github.com/sdispater/pendulum
+    - datetime library. Could model with integers.
+- https://github.com/openpaperwork/paperwork
+    - heavy on GUI programming, not what we're looking for.
+- https://github.com/tzutalin/labelImg
+    - also very heavy on GUI
+    - "LabelImg is a graphical image annotation tool and label object bounding boxes in images"
+- https://github.com/secdev/scapy
+    - "packet manipulation program & library"
+    - Might be able to model, but has some cryptographic functions that will needlessly over complicate
+- https://github.com/SpiderClub/weibospider
+    - "A distributed crawler for weibo, building with celery and requests."
+    - strings, parallel, and I can't read docs (项目亮点)
+- https://github.com/errbotio/errbot
+    - "Errbot is a chatbot. It allows you to start scripts interactively from your chatrooms for any reason"
+    - String reasoning
+- https://github.com/persepolisdm/persepolis
+    - "Persepolis Download Manager is a GUI for aria2."
+    - GUI
+- https://github.com/johnwheeler/flask-ask
+    - Strings (NLP)
+- https://github.com/hack4impact/flask-base
+    - authentication, user management and needlessly complicated data structures (databases, etc...)
+- https://github.com/myusuf3/delorean
+    - similar to pendulum but looks simpler and better documented
+- https://github.com/Python-Markdown/markdown
+    - Markdown parsing. Strings.
+- https://github.com/gruns/furl
+    - URL parsing. Strings.
+- https://github.com/celery/kombu
+    - "Messaging library for Python"
+    - Deals with protocols, strings, and celery
+- https://github.com/cdgriffith/Box
+    - new implementation of python dictionaries. Will be hard to reason about with PyExSMT
+- https://github.com/mozillazg/python-pinyin
+    - I can't read docs 
+- https://github.com/joowani/binarytree
+    - teaching repo. Looking for something real.
+- https://github.com/aaronduino/asciidots
+    - "AsciiDots is an esoteric programming language based on ascii art."
+    - Strings and parsing
+- https://github.com/allegro/ralph
+    - Databases and web interface. Will be difficult to model. 
+- https://github.com/openpaperwork/pyocr
+    - "PyOCR is an optical character recognition (OCR) tool wrapper for python"
+    - Will be difficult to reason about images
+- https://github.com/whitesmith/hawkpost
+    - "Generate links that users can use to submit messages encrypted with your public key"
+    - Encryption and strings
+- https://github.com/guyzmo/git-repo
+    - CLI. String manipulation.
+- https://github.com/airingursb/bilibili-user
+    - Can't read docs
+- https://github.com/muammar/mkchromecast
+    - "Cast macOS and Linux Audio/Video to your Google Cast and Sonos Devices"
+    - Reasoning about videos may be difficult
+
 ## Results
+- bii\_1\_old Vs. bii\_1\_new
+    - Client is init for UtcDatetime
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Used flag in wrapper for possibility of leaving tz parameter empty
+    - Wrapper returns epoch, which is how Delorean objects are checked for equality
+        - Client holds this Delorean object
+    - Proven CSE by pattern in 0.062 seconds
+        - Change does not affect functional behavior when comparing by epoch (seconds from start of time)
+- bii\_1\_old Vs. bii\_1\_new_mod
+    - Sanity check: introduce equivalence breaking change (set day=0)
+    - Counterexample found in 0.066 seconds
+- bii\_1\_old Vs. bii\_1\_new_error
+    - bii\_1\_new_error has original "if timezone" (see above)
+    - Counterexample found in 0.072 seconds
+- spec\_1\_old Vs spec\_1\_new
+    - Client is date\_to\_delorean
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py    
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns epoch, which is how Delorean objects are checked for equality
+        - Client function returns Delorean object
+    - Proven CSE by pattern in 0.028 seconds
+        - Change is not exercised since object is always created in UTC timezone.
+- spec\_1\_old Vs spec\_1\_new_mod
+    - Sanity check: introduce equivalence breaking change (set day=0)
+    - Counterexample found in 0.030 seconds
+- spec\_1\_old Vs spec\_1\_new_error
+    - spec\_1\_new_error has original "if timezone" (see above)
+    - Counterexample found in 0.029 seconds
+- spec\_2\_old Vs spec\_2\_new
+    - Client is get\_end\_start\_epochs
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns difference between two epochs instead of the two epochs
+    - CSE Proven by Pattern! Execution time: 2.383 seconds.
+- spec\_2\_old Vs spec\_2\_new_mod
+    - Sanity check from previous examples but this one should actually still be CSE
+    - Proven by assertion! 2.394 seconds
+- spec\_2\_old Vs spec\_2\_new_error
+    - spec\_2\_new_error has original "if timezone" (see above)
+    - Counterexample found in 1.308 seconds
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new
+    - Client is get\_end\_start\_epochs
+    - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
+        - Change to Delorean init (added line deep in conditionals)
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns shifted epoch
+    - CSE Proven by Pattern! Execution time: 2.179 seconds
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new_mod
+    - Sanity check: introduce equivalence breaking change (set day=0)
+    - Counterexample found in 2.271 seconds
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new_error
+    - spec\_2\_alt\_new_error has original "if timezone" (see above)
+    - Counterexample found in 1.347 seconds
 
 ### General Stats
 - 5/100 commits contained semantic changes to a function that did not modify signature.
