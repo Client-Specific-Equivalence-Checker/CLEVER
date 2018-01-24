@@ -27,8 +27,26 @@ class Datetime(object):
     def utcnow():
         return Datetime(2018,1,22,4,27,34, UTC)
 
+    def utcoffset(self):
+        '''
+        If tzinfo is None, returns None, else returns self.tzinfo.utcoffset(self), 
+        and raises an exception if the latter doesn’t return None, or a timedelta 
+        object representing a whole number of minutes with magnitude less than one day.
+        '''
+        if self.tzinfo is None:
+            return None
+        else:
+            self.tzinfo.utcoffset()
+
     def astimezone(self, tz):
-        return Datetime(self.year, self.month, self.day, self.hour, self.minute, self.second, tz)
+        self.tzinfo = tz
+        return self
+
+    def __sub__(self, other):
+        if other is None:
+            return self
+        self.minute -= other
+        return self
 
     @property
     def epoch(self):
@@ -39,6 +57,21 @@ class Datetime(object):
         mi = self.minute * 60
         s = self.second
         return y + m + d + h + mi + s + (self.tzinfo.tzinfo*60*60)
+
+    def replace(self, month=None, day=None, hour=None, minute=None, second=None, microsecond=None, tzinfo=None):
+        if month is not None:
+            self.month = month 
+        if day is not None:
+            self.day = day 
+        if hour is not None:
+            self.hour = hour 
+        if minute is not None:
+            self.minute = minute 
+        if second is not None:
+            self.second = second 
+        if tzinfo is not None:
+            self.tzinfo = tzinfo
+        return self
 
 class Tzinfo(object):
     def __init__(self, tz):
@@ -51,6 +84,13 @@ class Tzinfo(object):
     def normalize(self, dt):
         dt.tz = self
         return dt
+
+    def utcoffset(self):
+        '''
+        Return offset of local time from UTC, in minutes east of UTC. 
+        If local time is west of UTC, this should be negative
+        '''
+        return self.tzinfo * 60
 
 class Tzoffset(object):
     pass

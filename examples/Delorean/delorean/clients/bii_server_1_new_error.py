@@ -30,6 +30,6 @@ class UtcDatetime(object):
         if the_timezone == PST:  # Very common
         ##     return "PST8PDT"
             return PST8PDT
-        ## if the_timezone not in self.get_all_timezones():
-        ##     raise ValueError("%s is not a valid timezone" % the_timezone)
+        if the_timezone not in self.get_all_timezones():
+            raise ValueError("%s is not a valid timezone" % the_timezone)
         return the_timezone

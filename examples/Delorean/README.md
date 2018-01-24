@@ -91,6 +91,7 @@ to one library that preserves interfaces. Every sub-sub-point
 is the name of a (unchanged) client that calls this changed 
 library
 
+(13 Sep 2014)
 - ``upping version``
 - ``adding pypy and pypy3``
 - ``fixing tests and adding new build versions``
@@ -107,7 +108,8 @@ library
 - ``Merge pull request #55 from kermit666/patch-1``
 - ``Implemented timedelta arithmetic.``
 - ``Added documentation for timezone arithmetic.``
-- ``Finished up date arithmetic to better mirror datetime's functionality. Added test_suite to setup.py for test running.``
+- [``Finished up date arithmetic to better mirror datetime's functionality. Added test_suite to setup.py for test running.``](https://github.com/myusuf3/delorean/commit/94610de2896ab28e26d5992ab8fa47f01ca20f4b#diff-caf99710b7616662187e013c7f17449f)
+    - \_\_add\_\_
 - ``Updated documentation``
 - ``Merge pull request #56 from josefdlange/master``
 - ``testing naive truncating to the minute``
@@ -134,7 +136,9 @@ library
 - ``end_of_day should return 11pm, not 11am``
 - ``Merge pull request #67 from mlew/66``
 - ``Merge pull request #63 from mlew/61``
-- ``Update __repr__ return value``
+- [``Update __repr__ return value``](https://github.com/myusuf3/delorean/commit/311fba18a921f58be44ea071bb44c2367026d825#diff-caf99710b7616662187e013c7f17449f)
+    - Delorean._repr__
+        - fits but strings
 - ``Merge pull request #69 from mlew/64``
 - ``Migrate Delorean to work with FixedOffset timezones``
 - ``Cleanup code example in README.md``
@@ -157,7 +161,9 @@ library
     - delorean/dates.py/end\_of\_day() (initially incorrectly used 12 hour clock)
         - No clients inside of project
 - ``Merge branch 'pip-tools' into 40``
-- ``Fix delorean.now() to return a local Delorean``
+- [``Fix delorean.now() to return a local Delorean``](https://github.com/myusuf3/delorean/commit/976e21761f404faf7063b85bf522b18dbf29fbf3)
+    - delorean/interface.py/now (returns Delorean object for at local timezone of caller rather than UTC)
+        - Difficult to model, no clients inside of project
 - ``Move a bunch of Delorean class methods to properties``
 - ``Update requirements``
 - ``Add sphinx to dev-requirements``
@@ -176,7 +182,9 @@ library
 - ``fix for travis.ci``
 - ``setup.py fix``
 - ``Fix unit tests for case where get_localzone is in UTC``
-- ``Python2.6 compatability``
+- [``Python2.6 compatability``](https://github.com/myusuf3/delorean/commit/064bc8d0716e06838f11ac38fbf3e56ec63c4e76#diff-230e72a10b6a14e8369dec6a57f0f6da)
+    - delorean/dates.py/init
+    - delorean/interface.py/parse
 - ``Some last minute cleanup``
 - ``Updates to Changes.rst for 0.6.0 release.``
 - ``Merge pull request #73 from mlew/0.6.0``
@@ -210,9 +218,6 @@ library
 -  ``Remove unused utc variables`` in a test. 
 -  [``Migrate Delorean to work with FixedOffset timezones``](https://github.com/myusuf3/delorean/commit/afac86a678728be24b7dbf1670e568b2c246b563). A lot of changes that would fit criteria if taken individually. Really this is a big interface change.
 - ``Merge pull request #69 from mlew/64`` Update \_\_repr\_\_ return value. Technically this fits. But it's a waste of time to model/analyze.
-- [``Fix delorean.now() to return a local Delorean``](https://github.com/myusuf3/delorean/commit/976e21761f404faf7063b85bf522b18dbf29fbf3)
-    - delorean/interface.py/now (returns Delorean object for at local timezone of caller rather than UTC)
-        - Difficult to model, not CSEC, no clients inside of project
 - ``rule parameters weren't being passed, so stops function wasn't working properly.``
      - same as ``Merge pull request #49 from xgilest/master``
 - [``Delorean objects are equal if they are UTC equal``](https://github.com/myusuf3/delorean/commit/081c758045d6c3b56583d1f139d4bae4c7b9687f)
@@ -223,6 +228,32 @@ library
     - same as ``Merge branch 'master' into pip-tools`` 
 - ``Merge pull request #67 from mlew/66``
     - same as ``Merge branch 'master' into pip-tools`` 
+
+## Results
+- 24/100 commits were to (non-test or setup) python files
+    - There were a lot of duplicate commits, and most commits were changes to documentation.
+- 6/24 commits to python files were only changes in comments, names of variables, or formatting (spaces etc.)
+- 9/24 changed interface, added something entirely new, removed something entirely
+- 9/24 commits contained semantic changes to a function that did not modify signature.
+- 11 updates were identified (2 commits contained 2 candidates). The ones with xs were chosen. eq and add were not because it is extremely difficult to find clients for these two. parse, repr, and stops rely too heavily on strings.
+    - [ ] stops
+    - [ ] \_\_eq\_\_
+    - [x] \_\_init\_\_
+    - [x] \_\_init\_\_ (second)
+    - [ ] parse
+    - [ ] parse (second)
+    - [x] end\_of\_day()
+    - [ ] naive
+    - [x] now
+    - [ ] \_\_add\_\_
+    - [ ] \_\_repr\_\_
+- 0 clients were found inside of project for these updates.
+    - Delorean is really meant to be a library
+- 5 external clients chosen and searched for calls to these libraries.
+- So far I have checked 12 client-library pairs (some are sanity checks, others variations of modeling choices)
+    - CSE by pattern: 4
+    - CSE by assertion: 1 
+    - Not-CSE: 7
 
 
 ## Client Search
@@ -236,71 +267,39 @@ This resulted in 9 projects that depend on Delorean, of those 9, the following a
 - https://github.com/mwaterfall/alfred-datetime-format-converter
 - https://github.com/myusuf3/courtside
 
-I then searched through each of the 9 projects to find clients for each of the 6 library functions we identified below (in progress).
-
-Note: should follow the clients of init further. They usually return the object.
+I then searched through each of the 9 projects to find clients for each of the library functions we identified below.
 
 #### Speculator
-- [ ] stops
-- [ ] \_\_eq\_\_
 - [x] \_\_init\_\_
     -  [many inits, date_to_delorean, date_to_epoch, now_delorean, get_end_start_epochs](https://github.com/amicks/Speculator/blob/17ac7a1c0a2df8370e2820b98ff13af489b666b0/speculator/utils/date.py)
-- [ ] parse
 - [ ] end\_of\_day()
-- [ ] naive
+- [ ] now
 
 #### bloop
-- [ ] stops
-- [ ] \_\_eq\_\_
 - [x] \_\_init\_\_
     - [DateTime.dynamo_load, Timestamp.dynamo_load](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/bloop/ext/delorean.py) 
     - [new_expiry](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/examples/mixins.py)
-- [ ] parse
 - [ ] end\_of\_day()
-- [ ] naive
-
+- [ ] now
 
 #### bii server
 [all here. Follow UtcDatetime to get more clients](https://github.com/biicode/bii-server/blob/d2d7f2f0e38ff5ffdf1918ddeb33d1f4b1b530b1/model/epoch/utc_datetime.py)
-- [ ] stops
-- [x] \_\_eq\_\_
 - [x] \_\_init\_\_
-- [ ] parse
 - [ ] end\_of\_day()
-- [x] naive
+- [ ] now
 
 #### alfred-datetime-format-converter
-- [ ] stops
-- [ ] \_\_eq\_\_
 - [x] \_\_init\_\_
     -  [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) returns a delorean object. We should follow this back for eqm end of day, and naive.
-- [x] parse
-    - [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) 
 - [ ] end\_of\_day()
-- [ ] naive
+- [ ] now
 
 #### courtside
-- [ ] stops
-- [ ] \_\_eq\_\_
-- [ ] \_\_init\_\_
-- [x] parse
-    - [localize_datetime](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/game/templatetags/time_tags.py) 
+- [x] \_\_init\_\_
+    - [run](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/register/tasks.py)
+    - [run](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/register/tasks.py)
 - [ ] end\_of\_day()
-- [x] naive
-    - [CleanGamesTask](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/register/tasks.py) 
-
-
-## Results
-- 5/100 commits contained semantic changes to a function that did not modify signature.
-    - This excludes changes to tests, and one big batch interface change whose individual components could have been chosen (see notes).
-- 6 libraries were identified (1 commit contained 2 candidate libraries)
-- 0 clients were found inside of project for these 6 libraries.
-    - Delorean is really meant to be a library
-- There were a lot of duplicate commits, and most commits were changes to documentation.
-- So far I have checked 12 client-library pairs (some are sanity checks, others variations of modeling choices)
-    - CSE by pattern: 4
-    - CSE by assertion 1: 
-    - Not-CSE: 7
+- [ ] now
 
 ### Case by Case
 - bii\_1\_old Vs. bii\_1\_new
@@ -327,7 +326,7 @@ Note: should follow the clients of init further. They usually return the object.
     - Client is date\_to\_delorean
     - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
         - Change to Delorean init (added line deep in conditionals)
-    - Modeled environment in delorean/environments/datetime_1.py    
+    - Modeled environment in delorean/environments/datetime_1.py
     - Changed string reasoning to int reasoning
         - "UTC" becomes UTC constant (=0)
         - if timezone becomes if timezone is not None

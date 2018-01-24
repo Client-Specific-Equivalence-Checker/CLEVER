@@ -1,5 +1,5 @@
 from delorean.environments.datetime_1 import *
-from delorean.libs.delorean_init_new import *
+from delorean.libs.delorean_init_2_new import *
 
 def date_to_delorean(year, month, day):
     """ Converts date arguments to a Delorean instance in UTC

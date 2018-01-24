@@ -26,7 +26,7 @@ def date_to_epoch(year, month, day):
     Returns:
         Int epoch in UTC from date.
     """
-    return int(date_to_delorean(year, month, day).epoch)
+    return date_to_delorean(year, month, day).epoch
 
 def now_delorean():
     """ Returns the current time as a Delorean instance in UTC """

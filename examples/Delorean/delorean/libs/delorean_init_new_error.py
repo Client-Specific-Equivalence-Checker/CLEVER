@@ -56,7 +56,8 @@ class Delorean(object):
                 self._tzinfo = self._dt.tzinfo
             else:
                 self._tzinfo = Pytz.utc
-                self._dt = datetime_timezone('UTC')
+                # self._dt = datetime_timezone('UTC')
+                self._dt = datetime_timezone(UTC)
 
     def shift(self, timezone):
         """
@@ -99,20 +100,20 @@ class Delorean(object):
             Delorean(datetime=datetime.datetime(2015, 1, 1, 12, 0), timezone='US/Pacific')
 
         """
-        # if s == 'second': 
-        #     self._dt = self._dt.replace(microsecond=0)
-        # elif s == 'minute':
-        #     self._dt = self._dt.replace(second=0, microsecond=0)
-        # elif s == 'hour':
-        #     self._dt = self._dt.replace(minute=0, second=0, microsecond=0)
-        # elif s == 'day':
-        #     self._dt = self._dt.replace(hour=0, minute=0, second=0, microsecond=0)
-        # elif s == 'month':
-        #     self._dt = self._dt.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        # elif s == 'year':
-        #     self._dt = self._dt.replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
-        # else:
-        #     raise ValueError("Invalid truncation level")
+        if s == SECOND: 
+            self._dt = self._dt.replace(microsecond=0)
+        elif s == 2:
+            self._dt = self._dt.replace(second=0, microsecond=0)
+        elif s == 3:
+            self._dt = self._dt.replace(minute=0, second=0, microsecond=0)
+        elif s == 4:
+            self._dt = self._dt.replace(hour=0, minute=0, second=0, microsecond=0)
+        elif s == 5:
+            self._dt = self._dt.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        elif s == 6:
+            self._dt = self._dt.replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
+        else:
+            raise ValueError("Invalid truncation level")
 
         pass
 
