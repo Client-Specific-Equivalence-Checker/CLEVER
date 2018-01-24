@@ -242,19 +242,18 @@ library
     - [x] \_\_init\_\_ (second)
     - [ ] parse
     - [ ] parse (second)
-    - [x] end\_of\_day()
+    - [x] end\_of\_day() (no clients found)
     - [ ] naive
-    - [x] now
+    - [x] now (no clients found)
     - [ ] \_\_add\_\_
     - [ ] \_\_repr\_\_
 - 0 clients were found inside of project for these updates.
     - Delorean is really meant to be a library
 - 5 external clients chosen and searched for calls to these libraries.
-- So far I have checked 12 client-library pairs (some are sanity checks, others variations of modeling choices)
-    - CSE by pattern: 4
+- So far I have checked 16 client-library pairs (some are sanity checks, others variations of modeling choices)
+    - CSE by pattern: 8
     - CSE by assertion: 1 
     - Not-CSE: 7
-
 
 ## Client Search
 I Searched "Delorean" on Github. This yielded 1307 Python code results.
@@ -279,6 +278,7 @@ I then searched through each of the 9 projects to find clients for each of the l
 - [x] \_\_init\_\_
     - [DateTime.dynamo_load, Timestamp.dynamo_load](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/bloop/ext/delorean.py) 
     - [new_expiry](https://github.com/numberoverzero/bloop/blob/a19c410845d877e32a48ffec1d9d82cb2d7ae31b/examples/mixins.py)
+    - uses datetime.Datetime.strptime (strings)
 - [ ] end\_of\_day()
 - [ ] now
 
@@ -291,6 +291,7 @@ I then searched through each of the 9 projects to find clients for each of the l
 #### alfred-datetime-format-converter
 - [x] \_\_init\_\_
     -  [parse_query_value](https://github.com/mwaterfall/alfred-datetime-format-converter/blob/02ffc84ff8e971840d3a3134e4b2682484c4f489/workflow/process.py) returns a delorean object. We should follow this back for eqm end of day, and naive.
+    - function is based on parsing strings
 - [ ] end\_of\_day()
 - [ ] now
 
@@ -298,6 +299,7 @@ I then searched through each of the 9 projects to find clients for each of the l
 - [x] \_\_init\_\_
     - [run](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/register/tasks.py)
     - [run](https://github.com/myusuf3/courtside/blob/6d427391c543cc602ae2d92e1aa61ea15721645b/courtside/register/tasks.py)
+    - asynchronous tasks
 - [ ] end\_of\_day()
 - [ ] now
 
@@ -314,14 +316,14 @@ I then searched through each of the 9 projects to find clients for each of the l
     - Used flag in wrapper for possibility of leaving tz parameter empty
     - Wrapper returns epoch, which is how Delorean objects are checked for equality
         - Client holds this Delorean object
-    - Proven CSE by pattern in 0.062 seconds
+    - Proven CSE by pattern
         - Change does not affect functional behavior when comparing by epoch (seconds from start of time)
 - bii\_1\_old Vs. bii\_1\_new_mod
     - Sanity check: introduce equivalence breaking change (set day=0)
-    - Counterexample found in 0.066 seconds
+    - Counterexample found
 - bii\_1\_old Vs. bii\_1\_new_error
     - bii\_1\_new_error has original "if timezone" (see above)
-    - Counterexample found in 0.072 seconds
+    - Counterexample found
 - spec\_1\_old Vs spec\_1\_new
     - Client is date\_to\_delorean
     - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
@@ -333,14 +335,14 @@ I then searched through each of the 9 projects to find clients for each of the l
             - timezone == 0 would go down wrong branch
     - Wrapper returns epoch, which is how Delorean objects are checked for equality
         - Client function returns Delorean object
-    - Proven CSE by pattern in 0.028 seconds
+    - Proven CSE by pattern
         - Change is not exercised since object is always created in UTC timezone.
 - spec\_1\_old Vs spec\_1\_new_mod
     - Sanity check: introduce equivalence breaking change (set day=0)
-    - Counterexample found in 0.030 seconds
+    - Counterexample found
 - spec\_1\_old Vs spec\_1\_new_error
     - spec\_1\_new_error has original "if timezone" (see above)
-    - Counterexample found in 0.029 seconds
+    - Counterexample found
 - spec\_2\_old Vs spec\_2\_new
     - Client is get\_end\_start\_epochs
     - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
@@ -352,13 +354,13 @@ I then searched through each of the 9 projects to find clients for each of the l
         - if timezone becomes if timezone is not None
             - timezone == 0 would go down wrong branch
     - Wrapper returns difference between two epochs instead of the two epochs
-    - CSE Proven by Pattern! Execution time: 2.383 seconds.
+    - CSE Proven by Pattern! Execution time.
 - spec\_2\_old Vs spec\_2\_new_mod
     - Sanity check from previous examples but this one should actually still be CSE
-    - Proven by assertion! 2.394 seconds
+    - Proven by assertion
 - spec\_2\_old Vs spec\_2\_new_error
     - spec\_2\_new_error has original "if timezone" (see above)
-    - Counterexample found in 1.308 seconds
+    - Counterexample found
 - spec\_2\_alt\_old Vs spec\_2\_alt\_new
     - Client is get\_end\_start\_epochs
     - Commit: ``Delorean.parse() understands dateutil.tz.tzlocal``
@@ -370,10 +372,60 @@ I then searched through each of the 9 projects to find clients for each of the l
         - if timezone becomes if timezone is not None
             - timezone == 0 would go down wrong branch
     - Wrapper returns shifted epoch
-    - CSE Proven by Pattern! Execution time: 2.179 seconds
+    - CSE Proven by Pattern! Execution time
 - spec\_2\_alt\_old Vs spec\_2\_alt\_new_mod
     - Sanity check: introduce equivalence breaking change (set day=0)
-    - Counterexample found in 2.271 seconds
+    - Counterexample found
 - spec\_2\_alt\_old Vs spec\_2\_alt\_new_error
     - spec\_2\_alt\_new_error has original "if timezone" (see above)
-    - Counterexample found in 1.347 seconds
+    - Counterexample found
+- bii\_2\_old Vs. bii\_2\_new
+    - Client is init for UtcDatetime
+    - Commit: ````Python2.6 compatability````
+        - Change to Delorean init
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Used flag in wrapper for possibility of leaving tz parameter empty
+    - Wrapper returns epoch, which is how Delorean objects are checked for equality
+        - Client holds this Delorean object
+    - Proven CSE by pattern seconds
+- spec\_3\_old Vs spec\_3\_new
+    - Client is date\_to\_delorean
+    - Commit: ````Python2.6 compatability````
+        - Change to Delorean init
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns epoch, which is how Delorean objects are checked for equality
+        - Client function returns Delorean object
+    - Proven CSE by pattern
+        - Change is not exercised since object is always created in UTC timezone.
+- spec\_4\_old Vs spec\_4\_new
+    - Client is get\_end\_start\_epochs
+    - Commit: ````Python2.6 compatability````
+        - Change to Delorean init
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns difference between two epochs instead of the two epochs
+    - CSE Proven by Pattern! Execution time.
+- spec\_2\_alt\_old Vs spec\_2\_alt\_new
+    - Client is get\_end\_start\_epochs
+    - Commit: ````Python2.6 compatability````
+        - Change to Delorean init
+    - Modeled environment in delorean/environments/datetime_1.py
+    - Also had to model \_shift\_date inside of Delorean to work with ints instead of strings
+    - Changed string reasoning to int reasoning
+        - "UTC" becomes UTC constant (=0)
+        - if timezone becomes if timezone is not None
+            - timezone == 0 would go down wrong branch
+    - Wrapper returns shifted epoch
+    - CSE Proven by Pattern! Execution time

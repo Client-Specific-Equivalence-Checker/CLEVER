@@ -9,7 +9,6 @@ ALL_TIMEZONES = list(range(-12, 15))
 
 SECOND = 1
 
-
 ###########################
 # MODELING ENVIRONEMNT
 ###########################
@@ -91,6 +90,8 @@ class Tzinfo(object):
         If local time is west of UTC, this should be negative
         '''
         return self.tzinfo * 60
+
+utc = Tzinfo(UTC)
 
 class Tzoffset(object):
     pass
