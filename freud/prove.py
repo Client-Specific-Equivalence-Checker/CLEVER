@@ -34,6 +34,7 @@ def prove_cse(startegy, file1, file2, client, library):
             endtime_wall = time.time()
             exec_time = endtime_wall-starttime_wall
             print("Summary:\n%s" % orig_summary)
+            print("#Paths: %d" % len(orig_struct.generated_inputs))
             return PATTERN, None, exec_time
 
         assertion = EqualsOrIff(orig_summary, upgr_summary)
@@ -41,6 +42,8 @@ def prove_cse(startegy, file1, file2, client, library):
         endtime_wall = time.time()
         exec_time = endtime_wall-starttime_wall
         print("Attempting to Prove:\n%s" % assertion)
+        print("#Paths V1: %d" % len(orig_struct.generated_inputs))
+        print("#Paths V2: %d" % len(upgr_struct.generated_inputs))
         if model:
             return NOTCSE, model, exec_time
         else:
