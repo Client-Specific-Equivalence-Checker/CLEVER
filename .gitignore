@@ -18,3 +18,5 @@ dist
 build
 *.py.dot
 *.py.dot.png
+
+genLM.py
