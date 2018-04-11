@@ -1,6 +1,6 @@
 from pyexsmt import uninterp_func_pair
 from pyexsmt.loader import *
-from pyexsmt.explore import ExplorationEngine
+from pyexsmt.explore import ShadowExplorationEngine
 import time
 
 from pysmt.shortcuts import *
@@ -8,7 +8,8 @@ from pysmt.shortcuts import *
 PATTERN = 0
 SOLVER = 1
 NOTCSE = 2
-ERROR = 3
+COUNTER = 3
+ERROR = 4
 
 def prove_cse(startegy, file1, file2, client, library):
     orig = loaderFactory(file1, client)
@@ -22,13 +23,20 @@ def prove_cse(startegy, file1, file2, client, library):
     unknown = Symbol('Unknown', INT)
     try:
         starttime_wall = time.time()
-        orig_engine = ExplorationEngine(orig.create_invocation())
-        orig_struct = orig_engine.explore()
-        orig_summary = orig_struct.to_summary(unknown)
+        
+        solver = Solver("z3")
+        engine = ShadowExplorationEngine(orig.create_invocation(), upgr.create_invocation(), solver)
+        result_struct = engine.explore()
 
-        upgr_engine = ExplorationEngine(upgr.create_invocation())
-        upgr_struct = upgr_engine.explore()
-        upgr_summary = upgr_struct.to_summary(unknown)
+        if isinstance(result_struct, tuple):
+            orig_struct = result_struct[0]
+            upgr_struct = result_struct[1]
+            orig_summary = orig_struct.to_summary(unknown)
+            upgr_summary = upgr_struct.to_summary(unknown)
+        else:
+            endtime_wall = time.time()
+            exec_time = endtime_wall-starttime_wall
+            return COUNTER, result_struct, exec_time
 
         if orig_summary == upgr_summary:
             endtime_wall = time.time()
@@ -38,14 +46,14 @@ def prove_cse(startegy, file1, file2, client, library):
             return PATTERN, None, exec_time
 
         assertion = EqualsOrIff(orig_summary, upgr_summary)
-        model = get_model(Not(assertion), "z3")
+        sat = is_sat(Not(assertion), "z3")
         endtime_wall = time.time()
         exec_time = endtime_wall-starttime_wall
         print("Attempting to Prove:\n%s" % assertion)
         print("#Paths V1: %d" % len(orig_struct.generated_inputs))
         print("#Paths V2: %d" % len(upgr_struct.generated_inputs))
-        if model:
-            return NOTCSE, model, exec_time
+        if sat:
+            return NOTCSE, None, exec_time
         else:
             return SOLVER, None, exec_time
 

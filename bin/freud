@@ -5,7 +5,7 @@ import sys
 import logging
 from argparse import ArgumentParser
 
-from freud.prove import PATTERN, SOLVER, NOTCSE, prove_cse
+from freud.prove import PATTERN, SOLVER, NOTCSE, COUNTER, prove_cse
 
 def main():
     print("Client-Specific Equivalence Checking")
@@ -62,8 +62,10 @@ def main():
         print("CSE Proven by Pattern!")
     elif res == SOLVER:
         print("CSE Proven by Assertion!")
-    elif res == NOTCSE:
+    elif res == COUNTER:
         print("Not CSE!\nCounter:\n%s" % ctr)
+    elif res == NOTCSE:
+        print("Not CSE!")
     else:
         print(res, ctr)
     

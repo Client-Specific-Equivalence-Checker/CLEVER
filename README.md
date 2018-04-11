@@ -13,6 +13,7 @@ cd ..
 
 # Install PyExSMT
 git clone https://github.com/FedericoAureliano/PyExSMT.git
+git checkout baseline_shadow
 cd PyExSMT
 sudo python3 setup.py install
 cd ..
