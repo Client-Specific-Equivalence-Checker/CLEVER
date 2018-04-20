@@ -1,0 +1,1 @@
+smack --entry-points=<ENTRY> --bpl-file <FILE>.bpl <FILE>.c 

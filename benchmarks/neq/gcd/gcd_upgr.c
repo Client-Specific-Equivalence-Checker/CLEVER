@@ -61,8 +61,3 @@ int client(unsigned int rate, unsigned int parent_rate, int n, int m)
     return g;
   }
 }
-
-int main(int x) {
-  int y, m, n;
-  return client(x, y, m, n);
-}
