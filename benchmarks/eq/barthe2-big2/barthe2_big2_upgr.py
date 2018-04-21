@@ -19,5 +19,5 @@ def lib(n):
     return x
 
 def barth2(x):
-    return lib(500)
+    return lib(x)
 
