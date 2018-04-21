@@ -1,1 +1,5 @@
+// convert a single C file
 smack --entry-points=<ENTRY> --bpl-file <FILE>.bpl <FILE>.c 
+
+// convert all C files
+for bench in `find . -name *.c`; do smack --entry-points=main --bpl-file ${bench%.*}.bpl $bench; done;
