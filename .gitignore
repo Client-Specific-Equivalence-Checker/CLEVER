@@ -19,4 +19,5 @@ build
 *.dot
 *.dot.png
 
-genLM.py
+genLM*.py
+genLU*.py
