@@ -9,5 +9,4 @@ def lib(n):
     return r
 
 def triangle(n):
-    r = lib(n)
-    return r
+    return lib(n)
