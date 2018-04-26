@@ -5,6 +5,7 @@ def lib(n):
         x = 1
         while x < n + 1:
             acc *= x
+            x +=1
         return acc
     return 0
 

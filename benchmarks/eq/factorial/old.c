@@ -4,6 +4,7 @@ int lib(int n){
         int x = 1;
         while(x < n + 1){
             acc = acc * x;
+            x = x +1;
         }
         return acc;
     }

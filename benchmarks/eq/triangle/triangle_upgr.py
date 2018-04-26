@@ -1,4 +1,5 @@
-def lib(n, s):
+def lib(n):
+    s = 0
     r = 0
     if (n <= 0):
         r = s
@@ -7,5 +8,5 @@ def lib(n, s):
     return r
 
 def triangle(n):
-    r = lib(n, 0)
-    return r
+    return lib(n)
+
