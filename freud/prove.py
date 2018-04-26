@@ -11,7 +11,11 @@ NOTCSE = 2
 COUNTER = 3
 ERROR = 4
 
-def prove_cse(startegy, file1, file2, client, library):
+def prove_cse(strategy, file1, file2, client, library):
+    if strategy == "LAZY":
+        lazy = True
+    else:
+        lazy = False
     orig = loaderFactory(file1, client)
     if orig is None:
         sys.exit(1)
@@ -26,7 +30,7 @@ def prove_cse(startegy, file1, file2, client, library):
         
         solver = Solver("z3")
         engine = ShadowExplorationEngine(orig.create_invocation(), upgr.create_invocation(), solver)
-        result_struct = engine.explore()
+        result_struct = engine.explore([], lazy)
 
         if isinstance(result_struct, tuple):
             orig_struct = result_struct[0]
