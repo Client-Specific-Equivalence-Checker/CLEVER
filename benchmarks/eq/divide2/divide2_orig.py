@@ -1,5 +1,5 @@
 def lib(x,y):
-    return x / y
+    return x // y
 
 def divide2(c, d):
     if (c % d == 0):
