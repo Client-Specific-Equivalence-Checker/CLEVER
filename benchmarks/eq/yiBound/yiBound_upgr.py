@@ -1,8 +1,8 @@
 def lib(x):
     if x > 10:
-        return 12
+        return 11
     else:
-        return x+1
+        return x-1
 
 def yiBound(x):
     if x < -100 or x > 100:
