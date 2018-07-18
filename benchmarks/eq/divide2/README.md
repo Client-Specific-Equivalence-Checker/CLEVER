@@ -1,4 +1,0 @@
-- The client uses *d* as a divisor before calling the library.
-- The original library uses *d* as a divisor
-- The updated library adds a check to ensure that it does not divide by zero
-- The change does not affect the client.

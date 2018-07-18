@@ -1,4 +1,0 @@
-- The client calls the library with the arguments in order of decreasing value.
-- The original library subtracts the second argument from the first.
-- The updated library adds a swap in the case that the first argument is lesser than the second.
-- The change does not affect the client.
