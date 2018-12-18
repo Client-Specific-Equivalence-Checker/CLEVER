@@ -6,19 +6,20 @@ Client-Specific Equivalence Checking
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/SE-Researcher/ASE2018.git
-cd ASE2018
+git clone https://github.com/Client-Specific-Equivalence-Checker/CLEVER.git
+cd CLEVER
 
 # 2. Install PySMT
 cd deps/pysmt
-sudo python3 setup.py install
-cd ..
+# (may need) sudo apt-get install python3-setuptools
+python3 setup.py install --user
+cd ../..
 
 # 3. Install Z3 with Python bindings
-pysmt-install --z3
+~/.local/bin/pysmt-install --z3
 # 4. Obtain a string to update your PYTHONPATH and then update it 
 # (you can just paste the string into your shell)
-pysmt-install --env
+~/.local/bin/pysmt-install --env
 # 5. Check that z3 was correctly installed
 pysmt-install --check
 # It should show
@@ -30,25 +31,25 @@ pysmt-install --check
 
 # 6. Install PyExZ3
 cd deps/PyExZ3
-sudo python3 setup.py install
+python3 setup.py install --user
 cd ../..
 
 # 7. Install CLEVER
 cd src
-sudo python3 setup.py install
+python3 setup.py install --user
 cd ..
 ```
 
 ## Usage
 
 ```bash
-CLEVER <V1_FILE> <V2_FILE> --client <NAME_OF_CLIENT> --library <NAME_OF_LIBRARY> <RETURN_TYPE> [<ARG_TYPES>]
+~/.local/bin/CLEVER <V1_FILE> <V2_FILE> --client <NAME_OF_CLIENT> --library <NAME_OF_LIBRARY> <RETURN_TYPE> [<ARG_TYPES>]
 ```
 
 ## Example
 
 ```bash
-CLEVER loopmult20.py loopmult20_1.py --client loopmult20 --library lib int [int,int]
+~/.local/bin/CLEVER loopmult20.py loopmult20_1.py --client loopmult20 --library lib int [int,int]
 
 Attempting to Prove:
 (((18 <= x) ? ((x < 22) ? ((... + ...) + x) : 0) : 0) = ((18 <= x) ? ((x < 22) ? ((... < ...) ? (... ? ... : ...) : Unknown) : 0) : 0))
