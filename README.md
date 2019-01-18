@@ -1,6 +1,4 @@
-# Anonymous Submission For ASE 2018 
-
-Client-Specific Equivalence Checking
+# Client-Specific Equivalence Checking
 
 ## Installing
 
