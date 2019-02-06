@@ -63,9 +63,9 @@ def main():
     elif res == SOLVER:
         print("CSE Proven by Assertion!")
     elif res == COUNTER:
-        print("Not CSE!\nCounter:\n%s" % ctr)
+        print("Not CSE Through Exploration!\nCounter:\n%s" % ctr)
     elif res == NOTCSE:
-        print("Not CSE!")
+        print("Not CSE Through Solver!\nCounter:\n%s" % ctr)
     else:
         print(res, ctr)
     

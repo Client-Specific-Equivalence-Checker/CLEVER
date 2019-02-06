@@ -50,16 +50,16 @@ def prove_cse(strategy, file1, file2, client, library):
             return PATTERN, None, exec_time
 
         assertion = EqualsOrIff(orig_summary, upgr_summary)
-        sat = is_sat(Not(assertion), "z3")
+        sat = get_model(Not(assertion), "z3")
         endtime_wall = time.time()
         exec_time = endtime_wall-starttime_wall
         print("Attempting to Prove:\n%s" % assertion)
         print("#Paths V1: %d" % len(orig_struct.generated_inputs))
         print("#Paths V2: %d" % len(upgr_struct.generated_inputs))
         if sat:
-            return NOTCSE, None, exec_time
+            return NOTCSE, sat, exec_time
         else:
-            return SOLVER, None, exec_time
+            return SOLVER, sat, exec_time
 
     except (ImportError, NotImplementedError, TypeError) as error:
         # create_invocation can raise ImportError
