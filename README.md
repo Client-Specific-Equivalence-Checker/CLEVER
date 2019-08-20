@@ -30,14 +30,14 @@ sudo make install
 # 3. Install pycparser:
 pip install pycparser
 
-# 7. Install CLEVER
+# 4. Install CLEVER
 cd src
 python3 setup.py install
 cd ..
 
-# 8. Use. See below.
+# 5. Use. See below.
 
-# 9. Deactiviate Virtualenv
+# 6. Deactiviate Virtualenv
 deactivate
 ```
 
