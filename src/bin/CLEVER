@@ -1,0 +1,75 @@
+#!/usr/bin/python3
+
+import os
+import sys
+import logging
+from argparse import ArgumentParser
+
+from CLEVER.prove import PATTERN, SOLVER, NOTCSE, COUNTER, prove_cse
+
+def main():
+    print("Client-Specific Equivalence Checking")
+
+    sys.path = [os.path.abspath(os.path.join(os.path.dirname(__file__)))] + sys.path
+
+    parser = ArgumentParser()
+
+    parser.add_argument("--log", dest="loglevel", action="store", \
+                                    help="Set log level", default="")
+    parser.add_argument('--library', dest="library", nargs=3, \
+                                    metavar=('name', 'return_type', 'arg_types'), \
+                                    help='<func_name> <return_type> <arg_types>', \
+                                    required=True)
+    parser.add_argument("--client", dest="client", action="store", \
+                                    help="Specify client point", required=True)
+    parser.add_argument("--max-iters", dest="max_iters", type=int, \
+                                    help="Limit number of iterations", default=0)
+    parser.add_argument("--max-depth", dest="max_depth", type=int, \
+                                    help="Limit the depth of paths", default=0)
+    parser.add_argument("--strategy", dest="strategy", action="store", \
+                                    help="Choose strategy to use", default="LAZY")
+    parser.add_argument(dest="file1", action="store", help="Original program")
+    parser.add_argument(dest="file2", action="store", help="Updated program")
+
+    options = parser.parse_args()
+
+    if options.loglevel in ["info", "INFO", "i", "I"]:
+        logging.basicConfig(level=logging.INFO, format='%(message)s')
+    elif options.loglevel in ["debug", "DEBUG", "d", "D"]:
+        logging.basicConfig(level=logging.DEBUG, format='DEBUG:\t%(message)s')
+    elif options.loglevel == "":
+        pass
+    else:
+        logging.error("Unrecognized Log Level")
+        sys.exit(-1)
+
+    logging.debug("Log Level Set to Debug")
+
+    if options.file1 == "" or not os.path.exists(options.file1):
+        parser.error("Missing original version")
+        sys.exit(1)
+
+    if options.file2 == "" or not os.path.exists(options.file2):
+        parser.error("Missing updated version")
+        sys.exit(1)
+
+    file1 = os.path.abspath(options.file1)
+    file2 = os.path.abspath(options.file2)
+
+    res, ctr, exec_time = prove_cse(options.strategy, file1, file2, options.client, options.library)
+
+    if res == PATTERN:
+        print("CSE Proven by Pattern!")
+    elif res == SOLVER:
+        print("CSE Proven by Assertion!")
+    elif res == COUNTER:
+        print("Not CSE Through Exploration!\nCounter:\n%s" % ctr)
+    elif res == NOTCSE:
+        print("Not CSE Through Solver!\nCounter:\n%s" % ctr)
+    else:
+        print(res, ctr)
+    
+    print("Execution time: {0:.3f} seconds".format(exec_time))
+
+if __name__ == "__main__":
+    main()
