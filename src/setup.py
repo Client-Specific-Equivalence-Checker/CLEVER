@@ -6,10 +6,10 @@ setup(
     name         = 'CLEVER',
     version      = '0.1',
     description  = 'Client-Specific Equivalence Checking of Python Programs',
-    scripts      = ['bin/CLEVER'],
+    scripts      = ['bin/KLEE_CLEVER'],
     packages     = find_packages(),
     package_dir  = {'CLEVER': 'CLEVER'},
     install_requires=[
-        'pyexsmt>=0.1'
+        'pycparser>=0.1'
     ]
 )

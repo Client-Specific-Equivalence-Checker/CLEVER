@@ -4,7 +4,7 @@ int foo(int a, int b) {
 		c -= a;
 	return c;}
 
-int main(int x, char*argv[]) {
+int main(int x) {
 	if (x>=85 && x<115)
 		return foo(x,100);
 	return 0;}

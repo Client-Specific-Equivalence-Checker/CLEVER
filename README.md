@@ -13,31 +13,22 @@ source bin/activate
 # 1. Clone repo
 git clone https://github.com/Client-Specific-Equivalence-Checker/CLEVER.git
 cd CLEVER
+git checkout KLEE_CLEVER
 
-# 2. Install PySMT
-cd deps/pysmt
-# (may need) sudo apt-get install python3-setuptools
-python3 setup.py install
-cd ../..
+# 2. Installing Klee
+sudo apt-get install build-essential curl libcap-dev git cmake libncurses5-dev python-minimal python-pip unzip libtcmalloc-minimal4 libgoogle-perftools-dev libsqlite3-dev
+sudo apt-get install clang-6.0 llvm-6.0 llvm-6.0-dev llvm-6.0-tools
+sudo pip install lit
+git clone https://github.com/FedericoAureliano/klee
+cd klee
+git checkout Nick
+mkdir build
+cd build
+cmake -DLLVM_CONFIG_BINARY=/usr/bin/llvm-config-6.0 .. -DENABLE_SOLVER_Z3=ON ..
+sudo make install
 
-# 3. Install Z3 with Python bindings
-pysmt-install --z3
-# 4. Obtain a string to update your PYTHONPATH and then update it 
-# (you can just paste the string into your shell)
-pysmt-install --env
-# 5. Check that z3 was correctly installed
-pysmt-install --check
-# It should show
-# z3        True (4.5.1)
-# If you see
-# "z3       False (None)"
-# then step 3 failed. Follow the isntructions at https://github.com/Z3Prover/z3 to install z3 with python3 bindings
-# If you see "Not in Python's path!" then step 4 was not completed correctly
-
-# 6. Install PyExZ3
-cd deps/PyExZ3
-python3 setup.py install
-cd ../..
+# 3. Install pycparser:
+pip install pycparser
 
 # 7. Install CLEVER
 cd src
@@ -53,17 +44,15 @@ deactivate
 ## Usage
 
 ```bash
-CLEVER <V1_FILE> <V2_FILE> --client <NAME_OF_CLIENT> --library <NAME_OF_LIBRARY> <RETURN_TYPE> [<ARG_TYPES>]
+CLEVER --old=<V1_FILE> --new=<V2_FILE> --client <NAME_OF_CLIENT> --lib <NAME_OF_LIBRARY>
 ```
 
 ## Example
 
 ```bash
-CLEVER loopmult20.py loopmult20_1.py --client loopmult20 --library lib int [int,int]
+KLEE_CLEVER --old examples/neq/loopmult100/old.c --new examples/neq/loopmult100/new.c --client main --library foo
 
-Attempting to Prove:
-(((18 <= x) ? ((x < 22) ? ((... + ...) + x) : 0) : 0) = ((18 <= x) ? ((x < 22) ? ((... < ...) ? (... ? ... : ...) : Unknown) : 0) : 0))
+time : 0.690563
 
-CSE Proven by Assertion!
-Execution time: 0.130 seconds
+CEX x : 85
 ```
